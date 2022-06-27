@@ -93,6 +93,10 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
+		
+		if(uvo == null) {
+			return VIEW_PATH + "user/login.jsp";
+		}
 		//total은 총 결제 금액이 넘어오는 것이다.
 		//회원 누적결제금액에 추가 현재 총 결제금액 추가.
 		////////////////////////////////////////////////////////////

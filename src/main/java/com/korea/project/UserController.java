@@ -566,9 +566,6 @@ public class UserController {
 	@RequestMapping("/id_search.do")
 	@ResponseBody
 	public List<String> id_search(String user_email) {
-		//String param = "";
-		String resultStr = "";
-
 		List<UserVO> list = user_dao.id_search(user_email);
 
 		List<String> param = new ArrayList<String>();
@@ -576,13 +573,11 @@ public class UserController {
 		//vo가 null인 경우 id자체가 DB에 존재하지 않는다는 의미
 		if( list == null ) {
 			param.add("no_email");
-			resultStr = String.format("[{'param':'%s'}]", param);
 
 		}
 		else {
 			for(int i = 0; i < list.size(); i++) {
 				param.add(list.get(i).getUser_id());
-				resultStr = String.format("[{'param':'%s'}]", param);
 			}
 		}
 		return param;
@@ -600,7 +595,6 @@ public class UserController {
 	@ResponseBody
 	public String pw_search(String user_id) {
 		String param = "";
-		String resultStr = "";
 
 		UserVO vo = user_dao.pw_search(user_id);
 
@@ -608,12 +602,10 @@ public class UserController {
 		//vo가 null인 경우 id자체가 DB에 존재하지 않는다는 의미
 		if( vo == null ) {
 			param = "no_id";
-			resultStr = String.format("[{'param':'%s'}]", param);
 
 		}
 		else {
 			param = vo.getUser_pw();
-			resultStr = String.format("[{'param':'%s'}]", param);
 
 		}
 		return param;

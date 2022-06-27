@@ -52,6 +52,10 @@ public class CartController {
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
 		
+		if(uvo == null) {
+			return VIEW_PATH + "user/login.jsp";
+		}
+		
 		List<CartVO> need = new ArrayList<CartVO>();
 		need = cart_dao.select(uvo.getUser_code());
 		// cart_dao에서 해당 user_code와 일치하는 애들을 조회하겠다(장바구니 리스트) -> 나중에는 세션 사용해야함
@@ -188,6 +192,10 @@ public class CartController {
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
 		
+		if(uvo == null) {
+			return VIEW_PATH + "user/login.jsp";
+		}
+		
 		// info로 p_info_code가 넘어옴 이것으로 p_detailtbl접근, p_info_dcode얻어서 장바구니에서 삭제
 		System.out.println(cnt);
 		System.out.println(info);
@@ -213,7 +221,12 @@ public class CartController {
 		HttpSession session = request.getSession();
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
-		int res = cart_dao.deleteAll(uvo.getUser_code());
+		
+		if(uvo == null) {
+			return VIEW_PATH + "user/login.jsp";
+		}
+		
+		cart_dao.deleteAll(uvo.getUser_code());
 
 		return "redirect:cart.do";
 	}
