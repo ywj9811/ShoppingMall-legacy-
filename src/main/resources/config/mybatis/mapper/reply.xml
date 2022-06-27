@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
+	<select id="reply" resultType="vo.Reply_ViewsVO"
+		parameterType="int">
+		select * from reply_views where p_info_code=
+		#{p_info_code}
+	</select>
+	
+	<select id="replycheck" resultType="reply"
+		parameterType="reply">
+		select * from replytbl where p_info_dcode=
+		#{p_info_dcode} and user_code = #{user_code} and payment_code = #{payment_code}
+	</select>
+	
+	<!-- MyPage 구매후기 검색 쿼리문 -->
+	<select id="user_reply" resultType="vo.Reply_ViewsVO"	parameterType="int">
+		select * from reply_views where user_code = #{user_code}
+	</select>
+	
+	<insert id="reply_insert" parameterType="reply">
+		insert into replytbl values(seq_reply.nextVal, #{user_code}, #{p_info_dcode}, #{reply_content}, sysdate, #{reply_ip}, #{payment_code} )
+	</insert>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

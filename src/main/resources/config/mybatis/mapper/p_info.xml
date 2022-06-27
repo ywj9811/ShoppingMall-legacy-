@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="p_info">
+<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
+	
+	<select id="p_info_vo" resultType="p_info" parameterType="int">
+		select * from p_infotbl where p_info_code = #{p_info_code}
+	</select>
+	<!-- 검색 했을때 가져오는 정보 -->
+	<select id="search" resultType="p_info"
+		parameterType="java.util.Map">
+		select * from p_infotbl where
+		p_info_mType like
+		'%'||#{search}||'%' or
+		p_info_sType like '%'||#{search}||'%' or
+		p_info_name like '%'||#{search}||'%'
+	</select>
+	
+	<!-- 상품 조회 -->
+	<select id="p_list" resultType="p_info" parameterType="p_info">
+		select * from p_infotbl where p_info_lType = #{p_info_lType} and p_info_mType = #{p_info_mType}
+	</select>
+	
+	<!-- 검색 결과 클릭 후 하나의 정보 -->
+	<select id="p_info" resultType="p_info" parameterType="int">
+		select
+		*from p_infotbl where p_info_code=#{p_info_code}
+	</select>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

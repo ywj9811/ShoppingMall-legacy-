@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
+	
+	<select id="selectvo" resultType="order" parameterType="order">
+		select * from ordertbl where 
+		user_code = #{user_code} and
+		order_regdate = #{order_regdate}
+	</select>
+	
+	<insert id="order_insert" parameterType="order">
+		insert into ordertbl values(seq_order.nextVal,
+		#{user_code},
+		#{order_name},
+		#{order_tel},
+		#{order_addr},
+		#{order_detail},
+		#{order_total},
+		#{order_cnt},
+		#{order_regdate} )
+	</insert>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="p_detail">
+	<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. -->
+	<select id="p_detail" resultType="p_detail" parameterType="int">
+		select * from p_detailtbl where p_info_code=#{p_info_code}
+	</select>
+	
+	<select id="p_code_vo" resultType="p_detail" parameterType="int">
+		select * from p_detailtbl where p_info_dcode = #{p_info_dcode}
+	</select>
+	
+	<select id="pvo" resultType="p_detail" parameterType="p_detail">
+		select * from p_detailtbl where p_info_code = #{p_info_code}
+		and p_detail_size = #{p_detail_size}
+		and p_detail_color = #{p_detail_color}
+	</select>
+	
+	<select id="p_dcode_vo" resultType="p_detail"
+		parameterType="int">
+		select * from p_detailtbl where p_info_code =
+		#{p_info_code}
+	</select>
+
+	<select id="p_dlist" resultType="p_detail" parameterType="int">
+		select
+		* from p_detailtbl where p_info_code = #{p_info_code}
+	</select>
+
+	<select id="p_adetail" resultType="p_detail" parameterType="int">
+		select * from p_detailtbl where p_info_code=#{p_info_code}
+	</select>
+
+	<update id="plus" parameterType="int">
+		UPDATE p_detailtbl
+		SET
+		p_detail_cell = p_detail_cell + 1
+		WHERE
+		p_info_dcode = #{p_info_dcode}
+	</update>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 
+		않음 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="payment">
+<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
+	<!-- 결제코드, 오더코드, 결제금액, 결제일, 결제수단 -->
+	<select id="paymentvo" resultType="payment" parameterType="payment">
+		select * from paymenttbl where
+			order_code = #{order_code}
+	</select>
+	
+	<insert id="payment_insert" parameterType="payment">
+		insert into paymenttbl values(
+			seq_payment.nextVal,
+			#{order_code},
+			#{payment_pay},
+			sysdate,
+			#{payment_type}
+		)
+	</insert>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+	<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. -->
+	<!-- 로그인할때 마지막 날짜 수정 -->
+	<update id="logdate" parameterType="user">
+		update usertbl set
+		user_logdate = sysdate where user_code = #{user_code}
+	</update>
+
+	<select id="user_info" resultType="user" parameterType="int">
+		select *
+		from usertbl where user_code=#{user_code}
+	</select>
+
+	<select id="user_class" resultType="int" parameterType="int">
+		select
+		user_class from usertbl where user_code = #{user_code}
+	</select>
+
+	<select id="user_vo" resultType="user" parameterType="int">
+		select *
+		from usertbl where user_code = #{user_code}
+	</select>
+
+	<update id="totalsum" parameterType="order">
+		UPDATE usertbl
+		SET
+		user_total
+		= user_total + #{order_total}
+		WHERE
+		user_code = #{user_code}
+	</update>
+
+	<!-- 회원 탈퇴 (탈퇴 예정 상태) -->
+	<update id="c_user_out" parameterType="java.util.HashMap">
+		update usertbl set user_status = 2 where user_code=#{user_code} and
+		user_pw=#{user_pw1}
+	</update>
+
+	<!-- 탈퇴 취소 및 휴면 활성화 -->
+	<update id="restore" parameterType="user">
+		update usertbl
+		set
+		user_status
+		= 0
+		where
+		user_code = #{user_code}
+	</update>
+
+	<update id="classup" parameterType="user">
+		update usertbl
+		set user_class
+		=
+		case
+		when user_total > 300000 then 3
+		when user_total > 200000 then 2
+		when
+		user_total > 100000 then 1
+		when user_total &lt; 100001 then 0
+		end
+	</update>
+
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 
+		않음 -->
+	<!-- 성헌이 추가!!! -->
+
+	<!-- 새 글 쓰기(댓글아님) -->
+	<!-- insert, update, delete에서는 resultType을 기술할 수 없다.(자동으로 정수형태로 지정됌.) -->
+	<insert id="user_insert" parameterType="user">
+		insert into usertbl
+		values (
+		seq_user.nextVal,
+		#{user_id},
+		#{user_pw},
+		#{user_name},
+		#{user_tel},
+		#{user_email},
+		#{user_addr},
+		#{user_daddr},
+		#{user_gender},
+		#{user_birth},
+		#{user_profile},
+		#{user_nick},
+		sysdate,
+		0,
+		0,
+		0,
+		sysdate
+		)
+	</insert>
+
+	<select id="user_id_double_check" resultType="int">
+		SELECT COUNT(*)
+		FROM USERTBL
+		WHERE user_id = #{user_id}
+	</select>
+
+	<select id="selectOne" resultType="user" parameterType="String">
+		select *
+		from usertbl where user_id=#{user_id}
+	</select>
+
+	<select id="nickSelectOne" resultType="user"
+		parameterType="String">
+		select * from usertbl where user_nick=#{user_nick}
+	</select>
+
+	<select id="user_login" resultType="user" parameterType="String">
+		select *
+		from usertbl WHERE user_id=#{user_id}
+	</select>
+
+	<select id="user_id_search" resultType="user"
+		parameterType="String">
+		select * from usertbl WHERE user_email=#{user_email}
+	</select>
+
+	<select id="user_pw_search" resultType="user"
+		parameterType="String">
+		select * from usertbl WHERE user_id=#{user_id}
+	</select>
+
+	<!-- @@ Mypage 회원정보 변경 @@ -->
+
+	<!-- 프로필 사진 변경 -->
+	<!-- 프로필 사진 변경 -->
+	<update id="c_profile" parameterType="user">
+		update usertbl set
+		user_profile = #{user_profile} where
+		user_code=#{user_code}
+	</update>
+
+	<!-- 닉네임 변경 쿼리문 -->
+	<update id="c_nick" parameterType="java.util.HashMap">
+		UPDATE usertbl set user_nick= #{rep} where user_nick = #{ori}
+	</update>
+
+	<!-- 기존 비밀번호 조회 쿼리문 -->
+	<select id="c_pw_check" resultType="String" parameterType="user">
+		select user_pw from usertbl where user_code= #{user_code}
+	</select>
+
+	<!-- 비밀번호 변경 쿼리문 -->
+	<update id="c_pw" parameterType="java.util.HashMap">
+		update usertbl set user_pw= #{c_pw3} where user_code=#{user_code}
+	</update>
+
+	<!-- 휴대전화 변경 쿼리문 -->
+	<update id="c_tel" parameterType="java.util.HashMap">
+		update usertbl set user_tel = #{user_tel} where user_code = #{user_code}
+	</update>
+
+	<!-- 주소, 상세주소 변경 쿼리문 -->
+	<update id="c_addr" parameterType="java.util.HashMap">
+		update usertbl set user_addr =
+		#{user_addr}, user_daddr = #{user_daddr}
+		where user_code=#{user_code}
+	</update>
+
+	<!-- 이메일 변경 쿼리문 -->
+	<update id="c_email" parameterType="java.util.HashMap">
+		update usertbl set
+		user_email=#{user_email} where user_code=#{user_code}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

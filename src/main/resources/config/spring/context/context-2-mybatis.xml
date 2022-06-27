@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds"/>
+		<!-- datasource에서 갖고있는 ds객체를 넘겨줌 -->
+		<property name="configLocation" 
+			   	  value="classpath:config/mybatis/mybatis-config.xml"/>
+	  	<!-- 해당 경로로 넘어가서 어느 mapper로 접근해야 하는지, 별칭이 있는지 정보를 받아옴 -->
+	</bean>
+	
+	<bean id="sqlSessionBean" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="factoryBean"/>
+	</bean>
+</beans>

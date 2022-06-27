@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
+	
+	<select id="cart_view" resultType="cartview" parameterType="int">
+		select * from cart_view where p_info_dcode = #{p_info_dcode}
+	</select>
+	
+	<select id="cart_list" resultType="cart" parameterType="int">
+		select * from carttbl where USER_CODE = #{code}
+	</select>
+	
+	<!-- count조회 -->
+	<select id="cart_count" resultType="int" parameterType="int">
+		select count(*) from carttbl where user_code=#{user_code}
+	</select>
+	
+	<update id="cart_plus" parameterType="cart">
+		update carttbl set cart_cnt = cart_cnt+1 where user_code = #{user_code} and p_info_dcode = #{p_info_dcode}
+	</update>
+	
+	<update id="cart_minus" parameterType="cart">
+		update carttbl set cart_cnt = cart_cnt-1 where user_code = #{user_code} and p_info_dcode = #{p_info_dcode}
+	</update>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+	<insert id="cartplus" parameterType="p_detail">
+		insert into carttbl values(
+			seq_cart.nextVal,
+			#{user_code},
+			#{p_info_dcode},
+			1
+		)
+	</insert>
+	
+	<delete id="delOne" parameterType="java.util.HashMap">
+		delete from carttbl where user_code = #{user_code} and p_info_dcode = #{p_info_dcode}
+	</delete>
+	
+	<delete id="delAll" parameterType="int">
+		delete from carttbl where user_code = #{user_code}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

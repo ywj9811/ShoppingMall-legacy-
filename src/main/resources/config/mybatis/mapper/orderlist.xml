@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orderlist">
+<!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
+	<select id="oselect" resultType="orderlist" parameterType="int">
+		select * from orderlisttbl where order_code = #{order_code}
+	</select>
+	
+	<select id="olist" resultType="orderlist" parameterType="int">
+		select * from orderlisttbl where user_code = #{user_code}
+	</select>
+	
+	<insert id="olinsert" parameterType="orderlist">
+		insert into orderlisttbl values(
+			seq_orderlist.nextVal,
+			#{order_code},
+			#{payment_code},
+			#{p_info_dcode},
+			#{orderList_cnt},
+			#{user_code}
+		)	
+	</insert>
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
