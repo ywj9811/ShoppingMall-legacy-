@@ -62,13 +62,7 @@ public class UserController {
 	OrderListDAO orderlist_dao;
 	@Autowired
 	CartDAO cart_dao;
-	
-	//탈퇴대기 회원 탈퇴로 전환
-	
-	/*
-	 * @Scheduled(cron= "* 59 23 * * *") public void test() {
-	 * System.out.println("test"); return; }
-	 */
+	 
 	//회원가입 페이지 이동
 	@RequestMapping(value = { "/shop_join.do" })
 	public String memberLogin() {
