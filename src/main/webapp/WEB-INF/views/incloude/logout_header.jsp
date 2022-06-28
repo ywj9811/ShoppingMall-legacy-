@@ -84,10 +84,10 @@ li {
 
       <li><a class="category" href="#">Life / Accessories </a>
          <ul class="inner">
-            <li><a href="#">Life</a></li>
-            <li><a href="#">Accessories</a></li>
+            <li><a href="p_list.do?ltype=잡화/악세서리&mtype=잡화">Life</a></li>
+            <li><a href="p_list.do?ltype=잡화/악세서리&mtype=악세서리">Accessories</a></li>
          </ul></li>
-      <li><a href="#" class="category">Today Sale </a>
+      <li><a href="today.do?ltype=세일" class="category">Today Sale </a>
       <li><a href="cart.do" class="category">Cart </a>
       <li><a href="userreply.do" class="category">My Page </a>
       <li><a href="search.do" class="category">Search </a>

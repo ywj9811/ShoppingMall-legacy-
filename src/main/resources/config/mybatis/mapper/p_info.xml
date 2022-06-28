@@ -24,6 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from p_infotbl where p_info_lType = #{p_info_lType} and p_info_mType = #{p_info_mType}
 	</select>
 	
+	<select id="today" resultType="p_info" parameterType="p_info">
+		select * from p_infotbl where p_info_lType = #{p_info_lType}
+	</select>
+	
 	<!-- 검색 결과 클릭 후 하나의 정보 -->
 	<select id="p_info" resultType="p_info" parameterType="int">
 		select

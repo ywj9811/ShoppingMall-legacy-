@@ -130,4 +130,12 @@ public class P_infoController {
 		model.addAttribute("list", list);
 		return VIEW_PATH + "list.jsp";
 	}
+	@RequestMapping("today.do")
+	public String today(String ltype, Model model) {
+		P_infoVO vo = new P_infoVO();
+		vo.setP_info_lType(ltype);
+		List<P_infoVO> list = p_info_dao.today_list(vo);
+		model.addAttribute("list", list);
+		return VIEW_PATH + "list.jsp";
+	}
 }

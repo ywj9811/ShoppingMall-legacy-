@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>상품</title>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <style>
 .search {
 	display: flex;
@@ -24,19 +33,12 @@
 	justify-content: space-between
 }
 
-}
-.data {
-	background: blue;
-}
-
 .photo {
-	background: #C7803E;
 	height: 300px;
 	width: 300px;
 }
 
 .content {
-	background: green;
 	margin-bottom: 20px;
 	display: flex;
 	justify-content: space-around;
@@ -66,10 +68,11 @@
 		<c:forEach var="vo" items="${list }">
 			<form>
 				<input name="p_info_code" type="hidden" value="${vo.p_info_code }">
-				<button type="button" onclick="send(this.form);" style="cursor: pointer;">
+				<button type="button" onclick="send(this.form);"
+					style="cursor: pointer;">
 					<div class="data">
 						<div class="photo">
-							사진 이미지 <img src="">
+							<img src="resources/upload/${vo.p_info_img1 }">
 						</div>
 						<div class="content">
 							<div class="price">가격 :${vo.p_info_price }원</div>

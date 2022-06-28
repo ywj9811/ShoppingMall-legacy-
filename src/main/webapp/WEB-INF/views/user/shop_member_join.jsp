@@ -156,6 +156,7 @@
 		
 		var i_check = "no";
 		var e_check = "no";
+		var e_check2 = "no";
 		var n_check = "no";
 		
 		var e_check_num;
@@ -209,7 +210,7 @@
 			var e_fin = f.e_check.value;
 			if(e_check_num == e_fin){
 				alert("인증 되었습니다");
-				e_check = "yes";
+				e_check2 = "yes";
 			}
 			else{
 				alert("인증번호가 일치하지 않습니다.");
@@ -271,6 +272,10 @@
 			
 			if (i_check == "no" || n_check == "no" || e_check == "no" ) {
 				alert("중복확인을 하세요");
+				return;
+			}
+			if(e_check2 == "no"){
+				alert("email인증을 해주세요");
 				return;
 			}
 

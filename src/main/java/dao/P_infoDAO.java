@@ -40,4 +40,8 @@ public class P_infoDAO {
 		List<P_infoVO> list = sqlSession.selectList("p_info.p_list", vo);
 		return list;
 	}
+	public List<P_infoVO> today_list(P_infoVO vo){
+		List<P_infoVO> list = sqlSession.selectList("p_info.today", vo);
+		return list;
+	}
 }

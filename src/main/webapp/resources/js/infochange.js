@@ -182,30 +182,3 @@ function c_addrFn() {
 	}
 }
 
-function c_email(f) { // 이메일 변경 버튼
-
-	var user_email1 = f.user_email1.value;
-	var user_email2 = f.user_email2.value;
-
-	if (user_email1 == '') {
-		alert('변경할 이메일을 입력해주세요');
-		return;
-	}
-	var url = "c_email.do?user_email1=" + user_email1 + "&user_email2=" + user_email2;
-	/*var param = "user_email1=" + user_email1 + "&user_email2=" + user_email2;
-*/
-	sendRequest(url, null, c_emailFn, "post");
-}
-function c_emailFn() {
-	if (xhr.readyState == 4 && xhr.status == 200) {
-		var data = xhr.responseText;
-		var json = (new Function('return' + data))();
-		if (json[0].param == 'yes') {
-			alert('변경 성공');
-			location.href = "infochange.do";
-		} else {
-			alert('변경 실패');
-		}
-
-	}
-}

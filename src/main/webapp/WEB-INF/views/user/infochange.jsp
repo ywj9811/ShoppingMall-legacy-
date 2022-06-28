@@ -73,7 +73,7 @@
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="panelsStayOpen-headingOne">
 					<button class="accordion-button" type="button"
-						data-bs-toggle="collapse"
+						class="btn btn-outline-dark" data-bs-toggle="collapse"
 						data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
 						aria-controls="panelsStayOpen-collapseOne">프로필 사진 변경</button>
 				</h2>
@@ -86,9 +86,9 @@
 								현재 프로필 사진 : <img src="resources/upload/${vo.user_profile }"
 									width="80">
 							</div>
-							<input type="file" name="user_photo"> <input
-								type="button" class="btn btn-outline-dark" value="프로필 사진 변경"
-								onclick="c_profile(this.form);">
+							<input type="file" class="form-control" name="user_photo">
+							<input type="button" class="btn btn-outline-dark"
+								value="프로필 사진 변경" onclick="c_profile(this.form);">
 						</form>
 					</div>
 				</div>
@@ -219,7 +219,15 @@
 								<option value="google.com">gmail.com</option>
 								<option value="nate.com">nate.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
-							</select> <input type="button" value="이메일 변경" class="btn btn-outline-dark"
+							</select> <input style="width: 100px;" type="button" value="중복체크"
+								class="btn btn-outline-dark" onclick="e_double(this.form);">
+							<input style="width: 140px;" type="button" value="인증번호 발송"
+								class="btn btn-outline-dark" onclick="certifyEmail(this.form);">
+							<input style="width: 250px;" class="form-control" name="e_check"
+								placeholder="인증번호를 입력하세요" maxlength='6'> <input
+								style="width: 100px;" type="button" value="인증확인"
+								class="btn btn-outline-dark" onclick="e_check_fin(this.form);">
+							<input type="button" value="이메일 변경" class="btn btn-outline-dark"
 								onclick="c_email(this.form);">
 						</form>
 					</div>
@@ -237,14 +245,19 @@
 					class="accordion-collapse collapse"
 					aria-labelledby="panelsStayOpen-headingSeven">
 					<div class="accordion-body">
-					<div>회원 탈퇴 시 1주일 동안 탈퇴 예정 상태가 됩니다.<br>
-					탈퇴 예정 상태에서는 언제든지 탈퇴 취소를 할 수 있습니다.<br>
-					회원 가입시 탈퇴했던 아이디는 재사용이 불가합니다.</div>
+						<div>
+							회원 탈퇴 시 1주일 동안 탈퇴 예정 상태가 됩니다.<br> 탈퇴 예정 상태에서는 언제든지 탈퇴 취소를 할
+							수 있습니다.<br> 회원 가입시 탈퇴했던 아이디는 재사용이 불가합니다.
+						</div>
 						<form>
 							<div>아이디 : ${vo.user_id }</div>
-							<div>비밀번호 : <input name="user_pw1" type="password"></div>
-							<div>비밀번호 재 입력 : <input name="user_pw2" type="password">
-								<input type="button" value="회원 탈퇴" placeholder="비밀 번호를 입력하세요" onclick="del(this.form)">
+							<div>
+								비밀번호 : <input name="user_pw1" type="password">
+							</div>
+							<div>
+								비밀번호 재 입력 : <input name="user_pw2" type="password"> <input
+									type="button" value="회원 탈퇴" placeholder="비밀 번호를 입력하세요"
+									class="btn btn-outline-dark" onclick="del(this.form)">
 							</div>
 						</form>
 					</div>
@@ -265,6 +278,149 @@
 				}
 			});
 		});
+
+		var e_check = "no";
+		var e_check2 = "no";
+		var e_check_num;
+
+		//이메일 중복체크
+		function e_double(f) {
+			var user_email = "user_email=" + f.user_email1.value.trim() + "@"
+					+ f.user_email2.value.trim();
+
+			$.ajax({
+				type : "post",
+				url : "e_check.do",
+				data : user_email,
+
+				success : function(data) {
+					if (data == "yes") {
+						alert("사용가능");
+						e_check = "yes";
+					}
+					if (data == "no") {
+						alert("중복된 이메일 입니다");
+					}
+				},
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			})
+		}
+
+		//이메일 인증
+		function certifyEmail(f) {
+
+			var user_email = "user_email=" + f.user_email.value.trim() + "@"
+					+ f.str_email02.value.trim();
+
+			$.ajax({
+				type : "post",
+				url : "certifyEmail.do",
+				data : user_email,
+
+				success : function(data) {
+					alert("인증번호가 발송되었습니다");
+					e_check_num = data;
+				},
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			});
+		}
+
+		function e_check_fin(f) {
+			var e_fin = f.e_check.value;
+			if (e_check_num == e_fin) {
+				alert("인증 되었습니다");
+				e_check2 = "yes";
+			} else {
+				alert("인증번호가 일치하지 않습니다.");
+				return;
+			}
+		}
+		
+		function c_email(f) { // 이메일 변경 버튼
+			
+			var user_email1 = f.user_email1.value;
+			var user_email2 = f.user_email2.value;
+			
+			if (user_email1 == '') {
+				alert('변경할 이메일을 입력해주세요');
+				return;
+			}
+			
+			if(e_check == "no"){
+				alert("중복체크를 해주세요");
+				return;
+			}
+			if(e_check2 == "no"){
+				alert("email인증을 해주세요");
+				return;
+			}
+			
+			var url = "c_email.do?user_email1=" + user_email1 + "&user_email2=" + user_email2;
+			/*var param = "user_email1=" + user_email1 + "&user_email2=" + user_email2;
+		*/
+			sendRequest(url, null, c_emailFn, "post");
+		}
+		function c_emailFn() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var data = xhr.responseText;
+				var json = (new Function('return' + data))();
+				if (json[0].param == 'yes') {
+					alert('변경 성공');
+					location.href = "infochange.do";
+				} else {
+					alert('변경 실패');
+				}
+
+			}
+		}
+		
+		function del(f) {
+			var user_pw1 = f.user_pw1.value.trim();
+			var user_pw2 = f.user_pw2.value.trim();
+
+			if (!confirm("회원탈퇴하시겠습니까?")) {
+				alert("탈퇴안함");
+				return;
+			}
+
+			if (user_pw1 == "") {
+				alert("비밀번호를 입력해주세요");
+				return;
+			}
+			if (user_pw2 == "") {
+				alert("비밀번호를 재입력해주세요");
+				return;
+			}
+			var url = "c_user_out.do";
+			var param = "user_pw1=" + user_pw1 + "&user_pw2=" + user_pw2;
+			sendRequest(url, param, delFn, "post");
+		}
+
+		function delFn() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var data = xhr.responseText;
+				var json = (new Function('return' + data))();
+
+				if (json[0].param == 'yes') { //탈퇴 성공 (탈퇴 예정 상태로 변경)
+					alert('See You Again Bro 1주일의 탈퇴 예정 상태가 됩니다.');
+					location.href = "main.do";
+				}
+				if (json[0].param == 'pw_db_not_eq') { // 기존 비밀번호와 불일치
+					alert("기존의 비밀번호와 일치하지 않습니다.");
+					return;
+				}
+				if (json[0].param == 'pw_not_eq') { // 중복확인 비밀번호와 불일치
+					alert("중복 비밀번호가 일치하지 않습니다.");
+					return;
+				}
+			}
+		}
 	</script>
 </body>
 </html>
