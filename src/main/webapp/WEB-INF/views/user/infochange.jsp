@@ -312,8 +312,8 @@
 		//이메일 인증
 		function certifyEmail(f) {
 
-			var user_email = "user_email=" + f.user_email.value.trim() + "@"
-					+ f.str_email02.value.trim();
+			var user_email = "user_email=" + f.user_email1.value.trim() + "@"
+					+ f.user_email2.value.trim();
 
 			$.ajax({
 				type : "post",
@@ -323,6 +323,7 @@
 				success : function(data) {
 					alert("인증번호가 발송되었습니다");
 					e_check_num = data;
+					alert(e_check_num);
 				},
 				error : function(request, status, error) {
 					console.log("code:" + request.status + "\n" + "message:"
