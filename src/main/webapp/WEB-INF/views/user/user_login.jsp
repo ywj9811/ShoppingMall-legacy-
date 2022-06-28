@@ -22,6 +22,19 @@
 	justify-content: space-evenly;
 	align-items: center;
 }
+
+.login_div {
+	display: flex;
+	flex-direction: column;
+	height: 350px;
+	justify-content: space-evenly;
+}
+
+.join_div {
+	display: flex;
+	flex-direction: column;
+	height: 350px;
+	justify-content: space-around;
 }
 </style>
 
@@ -32,23 +45,26 @@
 <body>
 	<form>
 		<div class="main">
+			<input type="hidden" name="${ vo.user_id }">
 			<div class="login_div">
 				<h3>로그인</h3>
 				<div>
-					<input type="text" name="user_id" placeholder="id:">
+					<input class="form-control" name="user_id" placeholder="ID">
 				</div>
 				<div>
-					<input type="password" name="user_pw" placeholder="pwd:">
+					<input class="form-control" type="password" name="user_pw"
+						placeholder="PassWord">
 				</div>
 				<div>
 					<input type="button" class="btn btn-outline-dark" value="로그인"
-						onclick="send(this.form);">
+						onclick="send(this.form);" name="login"
+						style="width: -webkit-fill-available;">
 				</div>
 
 				<div id="search_idpw">
-					<input type="button" class="btn btn-outline-dark"
+					<input type="button" class="btn btn-outline-dark" name="search_id"
 						value="아이디찾기" onclick="location.href = 'id_search_form.do'">
-					<input type="button" class="btn btn-outline-dark"
+					<input type="button" name="search_pw" class="btn btn-outline-dark"
 						value="비밀번호찾기" onclick="location.href = 'pw_search_form.do'">
 				</div>
 			</div>
@@ -60,7 +76,7 @@
 				</div>
 				<div>
 					<input type="button" class="btn btn-outline-dark"
-						value="회원가입"
+						name="member_join" value="회원가입"
 						onclick="location.href = 'shop_join.do'">
 				</div>
 			</div>

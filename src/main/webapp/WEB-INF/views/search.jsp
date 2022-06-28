@@ -33,19 +33,12 @@
 	justify-content: space-between
 }
 
-}
-.data {
-	background: blue;
-}
-
 .photo {
-	background: #C7803E;
 	height: 300px;
 	width: 300px;
 }
 
 .content {
-	background: green;
 	margin-bottom: 20px;
 	display: flex;
 	justify-content: space-around;
@@ -56,12 +49,12 @@
 	function search() {
 
 		var search = document.getElementById("search").value.trim();
-		
-		if(search == ''){
+
+		if (search == '') {
 			alert("검색어를 입력하세요");
 			return;
 		}
-		
+
 		location.href = "search1.do?search=" + search;
 
 	}
@@ -84,8 +77,8 @@
 		<jsp:include page="/WEB-INF/views/incloude/login_header.jsp"></jsp:include>
 	</c:if>
 	<div class="search">
-		<input type="text" id="search" placeholder="검색어를 입력하세요"> <input
-			type="button" class="btn btn-outline-dark" value="검색"
+		<input class="form-control" id="search" placeholder="검색어를 입력하세요">
+		<input type="button" class="btn btn-outline-dark" value="검색"
 			onclick="search();">
 	</div>
 
@@ -97,7 +90,7 @@
 					style="cursor: pointer;">
 					<div class="data">
 						<div class="photo">
-							사진 이미지 <img src="">
+							<img src="resources/upload/${vo.p_info_img1 }">
 						</div>
 						<div class="content">
 							<div class="price">가격 :${vo.p_info_price }원</div>

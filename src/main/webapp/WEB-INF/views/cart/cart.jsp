@@ -27,21 +27,28 @@ table, td, tr {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 100px auto;
+	margin: 150px auto;
 	width: 600px;
 	height: 1000px;
-	justify-content: space-evenly;
 }
 
 .del {
 	text-align: center;
-	margin-top: 50px;
 }
 
 .form_table {
-	width: 500px;
-	height: 200px;
+	width: 350px;
+	height: 150px;
 }
+
+.info {
+	display: flex;
+	text-align: center;
+}
+
+.img {
+	width: 100px;
+	height: 100px;
 }
 </style>
 </head>
@@ -50,31 +57,36 @@ table, td, tr {
 	<!-- 각 상품의 수량, 전체 수량 각각 필요 -->
 	<div class="center">
 		<div class="center_top">
-			<div>
-				<c:if test="${ total ne 0 }">
-					<c:forEach var="view_list" items="${ view_list }"
-						varStatus="listcount">
-						<form name="check" id="check">
-							<input type="hidden" name="info"
-								value="${ view_list.p_info_dcode }">
+			<c:if test="${ total ne 0 }">
+				<c:forEach var="view_list" items="${ view_list }"
+					varStatus="listcount">
+					<form name="check" id="check">
+						<input type="hidden" name="info"
+							value="${ view_list.p_info_dcode }">
+						<div class="info">
 							<div>
-								<div>${ view_list.p_info_img1 }</div>
+								<div class="img">
+									<img src="resources/upload/${ view_list.p_info_img1 }">
+								</div>
+							</div>
+							<div>
 								<div>상품명(색상/사이즈) : ${ view_list.p_info_name }(${ view_list.p_detail_color }/${ view_list.p_detail_size })</div>
-								<div>상품 가격 : ${ view_list.p_info_price }</div>
+								<div>상품 가격 : ${ view_list.p_info_price }원</div>
 								<div>
 									<input type="button" class="btn btn-outline-dark" value="-"
 										onclick="minus(this.form);"> <input readonly
-										name="cnt" value=${ need[listcount.index].cart_cnt}> <input
+										name="cnt" value=${ need[listcount.index].cart_cnt}
+										style="text-align: center; width: 100px;"> <input
 										type="button" class="btn btn-outline-dark" value="+"
 										onclick="plus(this.form);"> <img
 										src="resources/image/biggarbagebin_121980.png"
 										onclick="delOne()">
 								</div>
 							</div>
-						</form>
-					</c:forEach>
-				</c:if>
-			</div>
+						</div>
+					</form>
+				</c:forEach>
+			</c:if>
 
 			<c:if test="${ total eq 0 }">
 					아직 아무것도 담지 않았습니다.
@@ -104,7 +116,9 @@ table, td, tr {
 					<tr>
 						<td colspan="3"><input type="button"
 							class="btn btn-outline-dark" value="결제하기"
-							onclick="pay(this.form)"></td>
+							onclick="pay(this.form)"> <input type="button"
+							class="btn btn-outline-dark" value="취소하기"
+							onclick="javascript:history.back();"></td>
 					</tr>
 
 				</table>

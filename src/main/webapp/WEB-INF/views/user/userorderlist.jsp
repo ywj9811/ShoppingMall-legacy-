@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문 내역</title>
 <script src="resources/js/httpRequest.js"></script>
 <!-- jQuery -->
 <script type="text/javascript"
@@ -36,6 +36,13 @@
 	margin: 50px auto;
 	width: 1000px;
 }
+
+.center {
+	margin: auto;
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+}
 </style>
 </head>
 <body>
@@ -46,6 +53,7 @@
 				width="80">
 		</div>
 		<div>닉네임 : ${vo.user_nick }</div>
+		<div>회원 등급 : ${vo.user_class }</div>
 		<div>가입 일자 : ${vo.user_regdate }</div>
 	</div>
 	<div class="side">
@@ -62,41 +70,40 @@
 				onclick="location.href='orderlist.do'">
 		</div>
 	</div>
-
-	<div class="nav_data">
-		<c:forEach var="list" items="${ list }">
-			<form id="reply_form">
-				<input name="payment_code" type="hidden"
-					value="${ list.payment_code }"> <input name="p_info_dcode"
-					type="hidden" value="${list.p_info_dcode }">
-				<details>
-					<summary>${ list.p_info_img1 } ${ list.p_info_name } ${ list.p_info_price }
-						(${ list.p_detail_size } / ${ list.p_detail_color }) </summary>
-					<div id="preply">
-						<c:if test="${ list.reply_ok eq 0 }">
-								구매후기 : <input name="content" placeholder="구매후기">
-							<input type="button" value="작성" id="reply">
-						</c:if>
-						<c:if test="${ list.reply_ok eq 1 }">
-								구매후기를 작성하였습니다
+	
+	<div class="center">
+		<div class="nav_data">
+			<c:forEach var="list" items="${ list }">
+				<form id="reply_form">
+					<input name="payment_code" type="hidden"
+						value="${ list.payment_code }"> <input name="p_info_dcode"
+						type="hidden" value="${list.p_info_dcode }">
+					<details>
+						<summary>${ list.p_info_img1 } ${ list.p_info_name } ${ list.p_info_price }
+							(${ list.p_detail_size } / ${ list.p_detail_color }) </summary>
+						<div id="preply">
+							<c:if test="${ list.reply_ok eq 0 }">
+									구매후기 : <textarea name="content" rows="auto" cols="20" placeholder="구매후기" style="resize:none;"></textarea>
+								<!-- <input type="button" value="작성" class="btn btn-outline-dark"
+									id="reply"> -->
+									
+									<input type="button" value="작성" onclick="reply(this.form);">
 							</c:if>
-					</div>
-				</details>
-				<br>
-			</form>
-		</c:forEach>
+							<c:if test="${ list.reply_ok eq 1 }">
+									구매후기를 작성하였습니다
+								</c:if>
+						</div>
+					</details>
+					<br>
+				</form>
+			</c:forEach>
+		</div>
 	</div>
-
-	주문내역 페이지
+	
 	<script>
-		$("#reply").click(function(){
-			var form_data = $(this).closest('form').serialize();
-			//뭔가 form이 원래 반복되어 해당 form을 가져오는데, 첫번째 form을 가져오는듯. 그래서 content도 못가져오고
-			//아 모르겟다
-			//id가 중복될 수 없으니, 이 부분에서 오류가 발생한듯!!
-			//$(this)를 통해서 해당 클릭한 부분에 해당하는 놈을 가져온다는 것을 알려줘야 한다.
-			//$(this).closest('form') 이것이 현재 누른부분의 가장 가가운 form을 선택해주는 것이ㅏㄷ.
-			
+		function reply(f){
+			alert("넘어옴");
+			var form_data = "payment_code=" + f.payment_code.value + "&p_info_dcode=" + f.p_info_dcode.value + "&content="+f.content.value;
 			
 			console.log("상세코드"+form_data);
 
@@ -115,8 +122,8 @@
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
-		});
-
+		}
+	
 		function send(f) {
 
 			var p_info_code = f.p_info_code.value;

@@ -26,10 +26,6 @@
 </script>
 
 <style>
-div {
-	margin: 10px;
-}
-
 .join {
 	display: flex;
 	justify-content: space-around;
@@ -48,54 +44,60 @@ div {
 				type="hidden" name="user_status" value="1">
 			<h3>회원가입</h3>
 
-			<div>
-				<label>프로필 사진</label><input type="file" name="user_photo">
-			</div>
-
-			<div>
-				<label>닉네임</label><input name="user_nick" onchange="change2();">
-				<input type="button" value="중복체크" class="btn btn-outline-dark"
-					onclick="double_nick_check(this.form);">
+			<div class="mb-3">
+				<label class="form-label">프로필 사진</label> <input class="form-control"
+					type="file" name="user_photo">
 			</div>
 			<div>
-				<label>고객이름</label><input name="user_name">
-			</div>
-			<label>휴대폰 번호</label>
-			<div>
-				<select name="news_agency">
-					<!-- 통신사 -->
-					<option value="skt">SKT</option>
-					<option value="KT">KT</option>
-					<option value="LG U+">LG U+</option>
-					<option value="기타">기타</option>
-				</select> <input name="user_tel" placeholder="'-'를 제외하고 입력하세요" maxlength='11'>
-			</div>
-			<div>
-				<label>고객 아이디</label><input name="user_id" onchange="change();">
-				<input type="button" name="id_double_check"
-					class="btn btn-outline-dark" value="중복체크"
+				<label class="form-label">고객 아이디</label> <input class="form-control"
+					name="user_id" onchange="change();"> <input type="button"
+					name="id_double_check" class="btn btn-outline-dark" value="중복체크"
 					onclick="id_double_chk(this.form);">
 			</div>
 			<div>
-				<label>비밀번호</label> <input name="user_pw" type="password">
+				<label class="form-label">비밀번호</label> <input class="form-control"
+					name="user_pw" type="password">
 			</div>
 			<div>
-				<label>비밀번호 확인</label><input name="user_pw2" type="password">
+				<label class="form-label">비밀번호 확인</label><input class="form-control"
+					name="user_pw2" type="password">
 			</div>
+			<div>
+				<label class="form-label">고객이름</label><input class="form-control"
+					name="user_name">
+			</div>
+			<div>
+				<label class="form-label">닉네임</label> <input class="form-control"
+					name="user_nick" onchange="change2();"> <input
+					type="button" value="중복체크" class="btn btn-outline-dark"
+					onclick="double_nick_check(this.form);">
+			</div>
+			<label class="form-label">휴대폰 번호</label>
+			<div>
+				<input class="form-control" name="user_tel"
+					placeholder="'-'를 제외하고 입력하세요" maxlength='11'>
+			</div>
+
 			<div class="user_addr_c">
-				주소 : <input name="user_addr" class="addr" id="addr"> <input
-					type="button" name="addr_search" class="btn btn-outline-dark"
-					value="주소찾기" placeholder="주소">
+				<label class="form-label">주소</label><input name="user_addr"
+					class="form-control" id="addr"> <input type="button"
+					name="addr_search" class="btn btn-outline-dark" value="주소찾기"
+					placeholder="주소">
 			</div>
 			<div>
-				<label>상세주소</label><input name="user_daddr" id="user_daddr2"
-					placeholder="(선택)">
+				<label class="form-label">상세주소</label><input class="form-control"
+					name="user_daddr" id="user_daddr2" placeholder="(선택)">
 			</div>
 			<div>
-				<label>이메일</label> <input type="email" name="user_email"
-					placeholder="abc">@<input type="text" name="str_email02"
-					id="str_email02" style="width: 100px;" disabled value="naver.com">
-				<select style="width: 100px; margin-right: 10px" name="selectEmail"
+				<div>
+					<label class="form-label">이메일</label>
+				</div>
+				<input class="form-control" type="email" name="user_email"
+					style="width: 150px; display: inline-block;"> <a>@</a> <input
+					class="form-control" name="str_email02" id="str_email02"
+					style="width: 150px; display: inline-block;" disabled
+					value="naver.com"> <select class="form-select"
+					style="width: 150px; display: inline-block;" name="selectEmail"
 					id="selectEmail">
 					<option value="1">직접입력</option>
 					<option value="naver.com" selected>naver.com</option>
@@ -103,72 +105,63 @@ div {
 					<option value="hotmail.com">hotmail.com</option>
 					<option value="nate.com">nate.com</option>
 					<option value="yahoo.co.kr">yahoo.co.kr</option>
-					<option value="empas.com">empas.com</option>
-					<option value="dreamwiz.com">dreamwiz.com</option>
-					<option value="freechal.com">freechal.com</option>
-					<option value="lycos.co.kr">lycos.co.kr</option>
-					<option value="korea.com">korea.com</option>
-					<option value="gmail.com">gmail.com</option>
-					<option value="hanmir.com">hanmir.com</option>
-					<option value="paran.com">paran.com</option>
 				</select>
 			</div>
 			<div>
-				<label>생년월일</label><input name="birth" type="date">
+				<label class="form-label">생년월일</label> <input class="form-control"
+					name="birth" type="date">
 			</div>
-			<label>성별</label>
-			<div>
-				남 : <input type="radio" name="user_gender" value="0"> 여: <input
-					type="radio" name="user_gender" value="1">
+			<div style="display: flex; justify-content: space-evenly;">
+				<label class="form-label">성별</label>
+				<div>
+					남 : <input class="form-check-input" type="radio" name="user_gender"
+						value="0"> 여: <input class="form-check-input" type="radio"
+						name="user_gender" value="1">
+				</div>
 			</div>
-			<input type="button" value="회원가입" class="btn btn-outline-dark"
-				onclick="send(this.form);">
+			<div style="margin: auto; width: 100px;">
+				<input style="width: 100px;" type="button" value="회원가입"
+					class="btn btn-outline-dark" onclick="send(this.form);">
+			</div>
 		</div>
 	</form>
 
 	<script>
-	/* KAKAO ADDRESS */
-	window.onload = function() {
-		$(".user_addr_c").click(function() { //class = user_addr_class 클릭시 동작
-			new daum.Postcode({
-				oncomplete : function(data) { //선택시 입력값 세팅					
-					document.getElementById("addr").value = data.address; // 주소 넣기
-					document.querySelector("input[name=user_daddr]").focus(); //상세입력 포커싱
-				}
-			}).open();
-		})
+		/* KAKAO ADDRESS */
+		window.onload = function() {
+			$(".user_addr_c")
+					.click(
+							function() { //class = user_addr_class 클릭시 동작
+								new daum.Postcode(
+										{
+											oncomplete : function(data) { //선택시 입력값 세팅					
+												document.getElementById("addr").value = data.address; // 주소 넣기
+												document
+														.querySelector(
+																"input[name=user_daddr]")
+														.focus(); //상세입력 포커싱
+											}
+										}).open();
+							})
 
-	}
-</script>
+		}
+	</script>
 
 	<script>
 		var check = "no";
-	
-		   //이메일 입력방식 선택
-		   $('#selectEmail').change(function() {
-		      $("#selectEmail option:selected").each(function() {
-		
-		         if ($(this).val() == '1') { //직접입력일 경우
-		            $("#str_email02").val(''); //값 초기화
-		            $("#str_email02").attr("disabled", false); //활성화
-		         } else { //직접입력이 아닐경우
-		            $("#str_email02").val($(this).text()); //선택값 입력
-		            $("#str_email02").attr("disabled", true); //비활성화
-		         }
-		      });
-		   });
-		
+
 		function send(f) {
 			var text = f.user_tel.value.trim();
-			var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;		
+			var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 			var user_pw = f.user_pw.value.trim();
 			var user_pw2 = f.user_pw2.value.trim();
 			var user_addr = f.user_addr.value.trim();
-			var user_email = f.user_email.value.trim() + "@" + f.str_email02.value.trim();
-			var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;			
+			var user_email = f.user_email.value.trim() + "@"
+					+ f.str_email02.value.trim();
+			var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 			var user_gender = f.user_gender.value.trim();
 			var birth = f.birth.value;
-			
+
 			if (user_addr == '') {
 				alert("주소를 입력해 주세요");
 				return;
@@ -203,7 +196,7 @@ div {
 				alert("생년월일를 입력해 주세요");
 				return;
 			}
-			
+
 			if (check == "no") {
 				alert("중복확인을 하세요");
 				return;
@@ -277,6 +270,21 @@ div {
 		function change() {
 			check = "no";
 		}
+	</script>
+	<script type="text/javascript">
+		//이메일 입력방식 선택
+		$('#selectEmail').change(function() {
+			$("#selectEmail option:selected").each(function() {
+
+				if ($(this).val() == '1') { //직접입력일 경우
+					$("#str_email02").val(''); //값 초기화
+					$("#str_email02").attr("disabled", false); //활성화
+				} else { //직접입력이 아닐경우
+					$("#str_email02").val($(this).text()); //선택값 입력
+					$("#str_email02").attr("disabled", true); //비활성화
+				}
+			});
+		});
 	</script>
 
 </body>

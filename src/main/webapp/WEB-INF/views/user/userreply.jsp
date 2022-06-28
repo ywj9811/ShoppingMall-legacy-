@@ -32,16 +32,22 @@
 	margin: 50px auto;
 	width: 1000px;
 }
+
+.center {
+	margin: auto;
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+}
 </style>
-</head>
 <body>
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
-	<div class="info">
+	 <div class="info">
 		<div>
-		<img src="resources/upload/${vo.user_profile }"
-				width="80">
+			<img src="resources/upload/${vo.user_profile }" width="80">
 		</div>
 		<div>닉네임 : ${vo.user_nick }</div>
+		<div>회원 등급 : ${vo.user_class }</div>
 		<div>가입 일자 : ${vo.user_regdate }</div>
 	</div>
 	<div class="side">
@@ -65,7 +71,7 @@
 			<div>구매상품 색상 :${list.p_detail_color } / 사이즈
 				:${list.p_detail_size }</div>
 			<div>상품 코드 : ${list.p_info_code }</div>
-			<div>내용 : ${list.reply_content }</div>
+			<div>내용 : <textarea rows="auto" cols="20" style="resize:none;" readonly><c:out value="${ list.reply_content }"/></textarea></div>
 			<div>작성일 : ${list.reply_regdate }</div>
 		</div>
 	</c:forEach>
