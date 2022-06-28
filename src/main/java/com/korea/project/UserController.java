@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,11 @@ import javax.servlet.http.HttpSession;
 
 //import org.apache.ibatis.jdbc.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,10 +46,13 @@ public class UserController {
 	ServletContext application;
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	HttpServletRequest request;
 
 	@Autowired
-	HttpSession session;
+	private JavaMailSenderImpl mailSender;
 
 	@Autowired
 	UserDAO user_dao;
@@ -51,24 +62,76 @@ public class UserController {
 	OrderListDAO orderlist_dao;
 	@Autowired
 	CartDAO cart_dao;
-
+	
+	//탈퇴대기 회원 탈퇴로 전환
+	
+	/*
+	 * @Scheduled(cron= "* 59 23 * * *") public void test() {
+	 * System.out.println("test"); return; }
+	 */
 	//회원가입 페이지 이동
 	@RequestMapping(value = { "/shop_join.do" })
 	public String memberLogin() {
-
 		return VIEW_PATH + "user/shop_member_join.jsp";
 	}
+	
+	//email중복체크
+	@RequestMapping("/e_check.do")
+	@ResponseBody
+	public String e_check(String user_email) {
+		UserVO vo = user_dao.echeck(user_email);
 
+		String data = "";
+
+		if(vo != null) {
+			data="no";
+		} else {
+			data="yes";
+		}
+
+		return data;
+	}
+	
+	//email인증
+	@RequestMapping(value = "/certifyEmail.do")
+	@ResponseBody
+	public String emailAuth(String user_email) {
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
+		/* 이메일 보내기 */
+		String setFrom = "ywj9811@naver.com";
+		String toMail = user_email;
+		String title = "회원가입 인증 이메일 입니다.";
+		String content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "인증 번호 : " + checkNum + "<br>"
+				+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content, true);
+			mailSender.send(message);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+		return Integer.toString(checkNum);
+
+	}
 	@RequestMapping(value = { "/mypage.do" }) // 마이페이지 이동
 	public String mypage(Model model) {
 		HttpSession session = request.getSession();
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
-		
+
 		if(uvo == null) {
 			return VIEW_PATH + "user/login.jsp";
 		}
-		
+
 		model.addAttribute("vo", uvo);
 
 		return "/WEB-INF/views/user/mypage.jsp";
@@ -80,11 +143,11 @@ public class UserController {
 		//birth형식이 ex): 2000-07-01 이런 형식으로 나오는데 -기준으로 split시킨 후 20000701(String형태)로 만들어줌.
 		String b[] = birth.split("-");
 		String user_birth = b[0] + b[1] + b[2];
-		
+
 		if(selectEmail.equals("1")) {
 			selectEmail = str_email02;
 		}
-		
+
 		String email = vo.getUser_email() + "@" +selectEmail;
 		//String으로 넘어온 값들 int타입으로 바꿔줘야함.
 		vo.setUser_birth(Integer.parseInt(user_birth));
@@ -275,11 +338,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		// vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
-		
+
 		if(uvo == null) {
 			return VIEW_PATH + "user/login.jsp";
 		}
-		
+
 		List<Reply_ViewsVO> list = reply_dao.user_reply(uvo.getUser_code());
 
 		model.addAttribute("vo", uvo);
@@ -294,11 +357,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		// vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
-		
+
 		if(uvo == null) {
 			return VIEW_PATH + "user/login.jsp";
 		}
-		
+
 		model.addAttribute("vo", uvo);
 
 		return "/WEB-INF/views/user/infochange.jsp";
@@ -311,11 +374,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		// vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
-		
+
 		if(uvo == null) {
 			return VIEW_PATH + "user/login.jsp";
 		}
-		
+
 		String filename = "no_file";
 
 		String webPath = "/resources/upload/"; // 절대 경로
@@ -512,11 +575,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO uvo = (UserVO) session.getAttribute("vo");
-		
+
 		if(uvo == null) {
 			return VIEW_PATH + "user/login.jsp";
 		}
-		
+
 		CartViewVo viewvo = new CartViewVo();
 		List<CartViewVo> list = new ArrayList<CartViewVo>();
 
@@ -627,7 +690,7 @@ public class UserController {
 	public String restore() {
 		return VIEW_PATH + "user/restore.jsp";
 	}
-	
+
 	//휴면 및 탈퇴 취소 완료
 	@RequestMapping("/restorefin.do")
 	@ResponseBody
@@ -637,9 +700,9 @@ public class UserController {
 		HttpSession session = request.getSession();
 		//vo라는 이름의 userVO 세션이 생성되어 있음
 		UserVO vo = (UserVO) session.getAttribute("nvo");
-		
+
 		String param = "";
-		
+
 		//vo가 null인 경우 id자체가 DB에 존재하지 않는다는 의미
 		if( !vo.getUser_id().equals(user_id)) {
 			param = "no_id";
@@ -651,51 +714,51 @@ public class UserController {
 			param = "pwd_false";
 			return param;
 		}
-		
+
 		user_dao.restore(vo);
 		param = "clear";
 		session.removeAttribute("nvo");
-		
+
 		return param;
 	}
-	
-	 // @@ Mypage 회원정보 변경 관련 @@ //
-	   // 회원 탈퇴, 탈퇴 예정
-	   @RequestMapping(value = { "/c_user_out.do" })
-	   @ResponseBody
-	   public String user_out(Model model, String user_pw1, String user_pw2) {
-	      HttpSession session = request.getSession();
-	      // vo라는 이름의 userVO 세션이 생성되어 있음
-	      UserVO uvo = (UserVO) session.getAttribute("vo");
 
-	      String ori_pw = user_dao.c_pw_check(uvo);
+	// @@ Mypage 회원정보 변경 관련 @@ //
+	// 회원 탈퇴, 탈퇴 예정
+	@RequestMapping(value = { "/c_user_out.do" })
+	@ResponseBody
+	public String user_out(Model model, String user_pw1, String user_pw2) {
+		HttpSession session = request.getSession();
+		// vo라는 이름의 userVO 세션이 생성되어 있음
+		UserVO uvo = (UserVO) session.getAttribute("vo");
 
-	      String str = "";
-	      String resultStr = "";
-	      if (!ori_pw.equals(user_pw1)) { // 기존의 비밀번호와 일치하지 않을때
+		String ori_pw = user_dao.c_pw_check(uvo);
 
-	         str = "pw_db_not_eq";
-	         resultStr = String.format("[{'param':'%s'}]", str);
-	         return resultStr;
+		String str = "";
+		String resultStr = "";
+		if (!ori_pw.equals(user_pw1)) { // 기존의 비밀번호와 일치하지 않을때
 
-	      } else if (!user_pw1.equals(user_pw2)) {
+			str = "pw_db_not_eq";
+			resultStr = String.format("[{'param':'%s'}]", str);
+			return resultStr;
 
-	         str = "pw_not_eq";
-	         resultStr = String.format("[{'param':'%s'}]", str);
-	         return resultStr;
+		} else if (!user_pw1.equals(user_pw2)) {
 
-	      } else {
+			str = "pw_not_eq";
+			resultStr = String.format("[{'param':'%s'}]", str);
+			return resultStr;
 
-	         HashMap<String, Object> pw_map = new HashMap<String, Object>();
-	         pw_map.put("user_code", uvo.getUser_code());
-	         pw_map.put("user_pw1", user_pw1);
+		} else {
 
-	         user_dao.c_user_out(pw_map);
-	         session.removeAttribute("vo");
-	         str = "yes";
-	         resultStr = String.format("[{'param':'%s'}]", str);
-	         return resultStr;
-	      }
-	   }
+			HashMap<String, Object> pw_map = new HashMap<String, Object>();
+			pw_map.put("user_code", uvo.getUser_code());
+			pw_map.put("user_pw1", user_pw1);
+
+			user_dao.c_user_out(pw_map);
+			session.removeAttribute("vo");
+			str = "yes";
+			resultStr = String.format("[{'param':'%s'}]", str);
+			return resultStr;
+		}
+	}
 
 }

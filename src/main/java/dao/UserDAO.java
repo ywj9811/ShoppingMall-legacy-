@@ -18,7 +18,13 @@ public class UserDAO {
 		int res = sqlSession.update("user.c_user_out",map);
 		return res;
 	}
-
+	
+	//email중복 확인
+	public UserVO echeck(String user_email) {
+		UserVO vo = sqlSession.selectOne("user.e_check", user_email);
+		return vo;
+	}
+	
 	//회원탈퇴 취소
 	public int restore(UserVO vo) {
 		int res = sqlSession.update("user.restore", vo);

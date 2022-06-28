@@ -166,6 +166,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update usertbl set
 		user_email=#{user_email} where user_code=#{user_code}
 	</update>
+	
+	<!-- email중복 확인 -->
+	<select id="e_check" resultType="user" parameterType="String">
+		select * from usertbl where user_email = #{user_email}
+	</select>
 </mapper>
 
 

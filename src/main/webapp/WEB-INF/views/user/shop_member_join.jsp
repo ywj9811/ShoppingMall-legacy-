@@ -93,19 +93,27 @@
 					<label class="form-label">이메일</label>
 				</div>
 				<input class="form-control" type="email" name="user_email"
-					style="width: 150px; display: inline-block;"> <a>@</a> <input
+					style="width: 150px; display: inline-block;" onchange="change3();"> <a>@</a> <input
 					class="form-control" name="str_email02" id="str_email02"
 					style="width: 150px; display: inline-block;" disabled
-					value="naver.com"> <select class="form-select"
+					value="naver.com" onchange="change3();"> <select class="form-select"
 					style="width: 150px; display: inline-block;" name="selectEmail"
 					id="selectEmail">
 					<option value="1">직접입력</option>
 					<option value="naver.com" selected>naver.com</option>
 					<option value="hanmail.net">hanmail.net</option>
-					<option value="hotmail.com">hotmail.com</option>
+					<option value="google.com">gmail.com</option>
 					<option value="nate.com">nate.com</option>
 					<option value="yahoo.co.kr">yahoo.co.kr</option>
-				</select>
+				</select> 
+				<input style="width: 100px;" type="button" value="중복체크"
+					class="btn btn-outline-dark" onclick="e_double(this.form);">
+				<input style="width: 140px;" type="button" value="인증번호 발송"
+					class="btn btn-outline-dark" onclick="certifyEmail(this.form);">
+				<input style="width: 250px;" class="form-control" name="e_check"
+					placeholder="인증번호를 입력하세요" maxlength='6'>
+				<input style="width: 100px;" type="button" value="인증확인"
+					class="btn btn-outline-dark" onclick="e_check_fin(this.form);">
 			</div>
 			<div>
 				<label class="form-label">생년월일</label> <input class="form-control"
@@ -145,11 +153,70 @@
 							})
 
 		}
-	</script>
+		
+		var i_check = "no";
+		var e_check = "no";
+		var n_check = "no";
+		
+		var e_check_num;
+		
+		//이메일 중복체크
+		function e_double(f){
+			var user_email = "user_email=" + f.user_email.value.trim() + "@" + f.str_email02.value.trim();
+			
+			$.ajax({
+				type : "post",
+				url : "e_check.do",
+				data : user_email,
+				
+				success: function(data){
+					if(data == "yes"){
+						alert("사용가능");
+						e_check = "yes";
+					}
+					if(data == "no"){
+						alert("중복된 이메일 입니다");
+					}
+				},
+				error: function (request, status, error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			})
+		}
+		
+		//이메일 인증
+		function certifyEmail(f) {
 
-	<script>
-		var check = "no";
+			var user_email = "user_email=" + f.user_email.value.trim() + "@"
+					+ f.str_email02.value.trim();
+			
+			$.ajax({
+				type : "post",
+				url : "certifyEmail.do",
+				data : user_email,
 
+				success : function(data) {
+					alert("인증번호가 발송되었습니다");
+					e_check_num = data;
+				},
+				error: function (request, status, error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+	
+		function e_check_fin(f){
+			var e_fin = f.e_check.value;
+			if(e_check_num == e_fin){
+				alert("인증 되었습니다");
+				e_check = "yes";
+			}
+			else{
+				alert("인증번호가 일치하지 않습니다.");
+				return;
+			}
+		}
+		
 		function send(f) {
 			var text = f.user_tel.value.trim();
 			var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -197,7 +264,12 @@
 				return;
 			}
 
-			if (check == "no") {
+			if (i_check == "no") {
+				alert("중복확인을 하세요");
+				return;
+			}
+			
+			if (i_check == "no" || n_check == "no" || e_check == "no" ) {
 				alert("중복확인을 하세요");
 				return;
 			}
@@ -226,7 +298,7 @@
 				var data = xhr.responseText;
 
 				if (data == "yes") {
-					check = "yes";
+					n_check = "yes";
 					alert("사용가능");
 				} else {
 					alert("중복된 닉네임입니다");
@@ -253,7 +325,7 @@
 				var data = xhr.responseText;
 
 				if (data == "yes") {
-					check = "yes";
+					i_check = "yes";
 					alert("사용가능");
 				} else {
 					alert("중복된 아이디입니다");
@@ -263,12 +335,18 @@
 
 		//nick onchange2()
 		function change2() {
-			check = "no";
+			n_check = "no";
 		}
+		
+		//email
+		function change3() {
+			i_check = "no";
+		}
+
 
 		//onchange()
 		function change() {
-			check = "no";
+			i_check = "no";
 		}
 	</script>
 	<script type="text/javascript">

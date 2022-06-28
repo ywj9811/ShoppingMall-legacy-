@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
-	 <div class="info">
+	<div class="info">
 		<div>
 			<img src="resources/upload/${vo.user_profile }" width="80">
 		</div>
@@ -66,13 +66,18 @@
 	</div>
 
 	<c:forEach var="list" items="${list }">
-		<div class="nav_data">
-			<div>상품 이름 : ${list.p_info_name }</div>
-			<div>구매상품 색상 :${list.p_detail_color } / 사이즈
-				:${list.p_detail_size }</div>
-			<div>상품 코드 : ${list.p_info_code }</div>
-			<div>내용 : <textarea rows="auto" cols="20" style="resize:none;" readonly><c:out value="${ list.reply_content }"/></textarea></div>
-			<div>작성일 : ${list.reply_regdate }</div>
+		<div class="center">
+			<div class="nav_data">
+				<div>상품 이름 : ${list.p_info_name }</div>
+				<div>구매상품 색상 :${list.p_detail_color } / 사이즈
+					:${list.p_detail_size }</div>
+				<div>상품 코드 : ${list.p_info_code }</div>
+				<div>
+					<textarea class="form-control" name="content" rows="3" style="resize:none;" readonly><c:out
+							value="${ list.reply_content }" /></textarea>
+				</div>
+				<div>작성일 : ${list.reply_regdate }</div>
+			</div>
 		</div>
 	</c:forEach>
 

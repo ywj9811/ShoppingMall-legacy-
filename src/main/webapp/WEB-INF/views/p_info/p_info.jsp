@@ -63,12 +63,12 @@
 				<div>상품 이름 : ${vo.p_info_name }</div>
 				<div>상품 가격 : ${vo.p_info_price }원</div>
 
-				<select name="sizebox">
+				<select name="sizebox" class="form-select">
 					<option>사이즈</option>
 					<c:forEach var="size" items="${size }">
 						<option value="${size}">${size}</option>
 					</c:forEach>
-				</select> <select name="colorbox">
+				</select> <select name="colorbox" class="form-select">
 					<option>색상</option>
 					<c:forEach var="color" items="${color }">
 						<option value="${color }">${color }</option>
@@ -77,18 +77,18 @@
 
 				<c:if test="${ sessionScope.vo ne null }">
 					<div>
-						<input type="button" value="장바구니" id="addcart">
-						<!--  onclick="addcart(this.form);" -->
+						<input type="button" class="btn btn-outline-dark" value="장바구니"
+							id="addcart">
 					</div>
-					<c:if test="${ sessionScope.vo eq null }">
-						<div>
-							<input type="button" class="btn btn-outline-dark" value="장바구니"
-								onclick="no();">
-						</div>
-					</c:if>
 					<div id="hide" style="display: none;">
 						<input type="button" class="btn btn-outline-dark" value="바로구매"
 							onclick="buynow();">
+					</div>
+				</c:if>
+				<c:if test="${ sessionScope.vo eq null }">
+					<div>
+						<input type="button" class="btn btn-outline-dark" value="장바구니"
+							onclick="no();">
 					</div>
 				</c:if>
 			</div>
@@ -107,8 +107,11 @@
 				<form style="margin-top: 30px;">
 					<div>닉네임 : ${list.user_nick }</div>
 					<div>색상 :${list.p_detail_color } / 사이즈 :${list.p_detail_size }</div>
-					<div>내용 : ${list.reply_content }</div>
-					<%-- <div>작성일 : ${list.reply_regdate }</div> --%>
+					<div>
+						<textarea class="form-control" name="content" rows="3"
+							style="resize: none;" readonly><c:out
+								value="${ list.reply_content }" /></textarea>
+					</div>
 				</form>
 				<hr>
 			</c:forEach>

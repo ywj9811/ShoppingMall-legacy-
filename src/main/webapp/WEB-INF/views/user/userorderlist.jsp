@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문 내역</title>
+<title>Insert title here</title>
 <script src="resources/js/httpRequest.js"></script>
 <!-- jQuery -->
 <script type="text/javascript"
@@ -78,23 +78,24 @@
 					<input name="payment_code" type="hidden"
 						value="${ list.payment_code }"> <input name="p_info_dcode"
 						type="hidden" value="${list.p_info_dcode }">
-					<details>
-						<summary>${ list.p_info_img1 } ${ list.p_info_name } ${ list.p_info_price }
-							(${ list.p_detail_size } / ${ list.p_detail_color }) </summary>
+					<div>
+						<div>
+							<img src="resources/upload/${ list.p_info_img1 }">
+						</div>
+						<a> ${ list.p_info_name } ${ list.p_info_price } (${ list.p_detail_size }
+							/ ${ list.p_detail_color })</a>
+
 						<div id="preply">
 							<c:if test="${ list.reply_ok eq 0 }">
-									구매후기 : <textarea name="content" rows="auto" cols="20" placeholder="구매후기" style="resize:none;"></textarea>
-								<!-- <input type="button" value="작성" class="btn btn-outline-dark"
-									id="reply"> -->
-									
-									<input type="button" value="작성" onclick="reply(this.form);">
+								<textarea class="form-control" name="content" rows="3" placeholder="구매후기" style="resize:none;"></textarea>
+								<input type="button" value="작성" class="btn btn-outline-dark"
+									onclick="reply(this.form);">
 							</c:if>
 							<c:if test="${ list.reply_ok eq 1 }">
-									구매후기를 작성하였습니다
-								</c:if>
+								구매후기를 작성하였습니다
+							</c:if>
 						</div>
-					</details>
-					<br>
+					</div>
 				</form>
 			</c:forEach>
 		</div>
@@ -102,7 +103,6 @@
 	
 	<script>
 		function reply(f){
-			alert("넘어옴");
 			var form_data = "payment_code=" + f.payment_code.value + "&p_info_dcode=" + f.p_info_dcode.value + "&content="+f.content.value;
 			
 			console.log("상세코드"+form_data);

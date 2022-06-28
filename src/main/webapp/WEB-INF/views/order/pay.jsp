@@ -82,7 +82,7 @@ div {
 					<div>상품 이미지 : ${ view_list.p_info_img1 }</div>
 					<div>상품 이름 : ${ view_list.p_info_name } (${ view_list.p_detail_color }/${ view_list.p_detail_size })
 					</div>
-					<div>상품 가격 : ${ view_list.p_info_price }</div>
+					<div>상품 가격 : ${ view_list.p_info_price }원</div>
 				</c:forEach>
 			</div>
 
