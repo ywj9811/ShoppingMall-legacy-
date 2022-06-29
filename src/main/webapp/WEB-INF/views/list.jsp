@@ -53,6 +53,7 @@
 		f.action = "p_info.do";
 		f.method = "get";
 		f.submit();
+		
 	}
 </script>
 </head>
