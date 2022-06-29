@@ -163,6 +163,16 @@
 		
 		//이메일 중복체크
 		function e_double(f){
+			if(f.user_email.value == ''){
+				alert("이메일을 입력해 주세요");
+				return;
+			}
+			
+			if(f.str_email02.value == ''){
+				alert("이메일을 입력해 주세요");
+				return;
+			}
+			
 			var user_email = "user_email=" + f.user_email.value.trim() + "@" + f.str_email02.value.trim();
 			
 			$.ajax({
@@ -187,7 +197,18 @@
 		
 		//이메일 인증
 		function certifyEmail(f) {
-
+			e_check2 = "no";
+			
+			if(f.user_email.value == ''){
+				alert("이메일을 입력해 주세요");
+				return;
+			}
+			
+			if(f.str_email02.value == ''){
+				alert("이메일을 입력해 주세요");
+				return;
+			}
+			
 			var user_email = "user_email=" + f.user_email.value.trim() + "@"
 					+ f.str_email02.value.trim();
 			
@@ -199,6 +220,8 @@
 				success : function(data) {
 					alert("인증번호가 발송되었습니다");
 					e_check_num = data;
+					alert(e_check_num);
+					//임시로 사용하는 alert
 				},
 				error: function (request, status, error) {
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -345,7 +368,8 @@
 		
 		//email
 		function change3() {
-			i_check = "no";
+			e_check = "no";
+			e_check2 = "no";
 		}
 
 

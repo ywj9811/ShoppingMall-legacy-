@@ -458,21 +458,20 @@ public class UserController {
 		String ori_pw = user_dao.c_pw_check(uvo);
 		String str = "";
 		String resultStr = "";
-
+		
+		
 		if (!ori_pw.equals(c_pw1)) { // 기존의 비밀번호와 일치하지 않을때
 
 			str = "not_equal1";
 			resultStr = String.format("[{'param':'%s'}]", str);
 			return resultStr;
 
-		} else if (!c_pw2.equals(c_pw3)) { // 기존의 비밀번호는
-
-			str = "not_equal2";
+		} else if(c_pw1.equals(c_pw2)) {
+			str = "equal";
 			resultStr = String.format("[{'param':'%s'}]", str);
 			return resultStr;
-
-		} else {
-
+			
+		}else {
 			HashMap<String, Object> pw_map = new HashMap<String, Object>();
 			pw_map.put("user_code", uvo.getUser_code());
 			pw_map.put("c_pw3", c_pw3);
