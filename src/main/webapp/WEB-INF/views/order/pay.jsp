@@ -79,7 +79,6 @@ div {
 			<div class="info_p">
 				<c:forEach var="view_list" items="${ view_list }"
 					varStatus="listcount">
-					<div>상품 이미지 : ${ view_list.p_info_img1 }</div>
 					<div>상품 이름 : ${ view_list.p_info_name } (${ view_list.p_detail_color }/${ view_list.p_detail_size })
 					</div>
 					<div>상품 가격 : ${ view_list.p_info_price }원</div>
@@ -94,7 +93,7 @@ div {
 				<div>총 가격 : ${ total }</div>
 				<div>
 					<input type="button" value="결제하기" class="btn btn-outline-dark"
-						onclick="test(this.form);">
+						onclick="requestPay(this.form);">
 				</div>
 			</div>
 		</div>
