@@ -100,7 +100,7 @@ table, td, tr {
 		</div>
 		<div class="center_bottom">
 			<form id="totalpay">
-				<input type="hidden" id="paytotal" name="total" value="">
+				<input type="hidden" id="paytotal" name="total" value="${ sailtotal }">
 				<table class="form_table">
 					<tr>
 						<td>상품 금액</td>
@@ -179,7 +179,6 @@ table, td, tr {
 			f.action = "delOne.do";
 			f.method = "post";
 			f.submit();
-
 		}
 
 		function delAll() {
@@ -192,6 +191,11 @@ table, td, tr {
 
 		/////////////////////////////////////////////////////////////
 		function pay(f) {
+			var total = f.total.value;
+			if(total == 0){
+				alert("장바구니가 비었습니다");
+				return;
+			}
 			const element = document.getElementById("sailtotal");
 			document.getElementById('paytotal').value = element.innerText;
 			f.method = "post";
