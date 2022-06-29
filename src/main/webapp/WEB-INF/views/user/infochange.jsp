@@ -107,8 +107,9 @@
 						<div>아이디 : ${vo.user_id }</div>
 						<form>
 							<div>닉네임 : ${vo.user_nick }</div>
-							<input name="nick" class="form-control-sm" onchange="nick_change();"> <input
-								type="button" value="중복체크" class="btn btn-outline-dark"
+							<input name="nick" class="form-control-sm"
+								onchange="nick_change();"> <input type="button"
+								value="중복체크" class="btn btn-outline-dark"
 								onclick="double_nick_check(this.form);">
 							<div>
 								<input type="button" value="닉네임 변경" class="btn btn-outline-dark"
@@ -132,13 +133,16 @@
 					<div class="accordion-body">
 						<form>
 							<div>
-								<input name="p1" type="password" class="form-control-sm" placeholder="기존 비밀번호 입력">
+								<input name="p1" type="password" class="form-control-sm"
+									placeholder="기존 비밀번호 입력">
 							</div>
 							<div>
-								<input name="p2" type="password" class="form-control-sm" placeholder="새 비밀번호 입력">
+								<input name="p2" type="password" class="form-control-sm"
+									placeholder="새 비밀번호 입력">
 							</div>
 							<div>
-								<input name="p3" type="password" class="form-control-sm" placeholder="새 비밀번호 재 입력">
+								<input name="p3" type="password" class="form-control-sm"
+									placeholder="새 비밀번호 재 입력">
 							</div>
 							<input type="button" value="비밀번호 변경" class="btn btn-outline-dark"
 								onclick="c_pw(this.form);">
@@ -161,7 +165,8 @@
 						<input type="text" class="form-control-sm" value="${vo.user_tel }">
 						<form>
 							<div>
-								<input name="tel" class="form-control-sm" placeholder="'-'를 제외하고 입력하세요" maxlength='11'>
+								<input name="tel" class="form-control-sm"
+									placeholder="'-'를 제외하고 입력하세요" maxlength='11'>
 							</div>
 							<input type="button" value="휴대폰번호 변경"
 								class="btn btn-outline-dark" onclick="c_tel(this.form);">
@@ -186,7 +191,7 @@
 							<div>현재 주소 : ${vo.user_addr }</div>
 							<div>현재 상세 : ${vo.user_daddr }</div>
 							<div class="user_addr_c">
-								주소 :<input id="addr" name="user_addr" class="form-control-sm" >
+								주소 :<input id="addr" name="user_addr" class="form-control-sm">
 							</div>
 							<div>
 								상세 주소 : <input name="user_daddr" class="form-control-sm">
@@ -210,9 +215,12 @@
 					<div class="accordion-body">
 						<div>현재 이메일 : ${vo.user_email }</div>
 						<form>
-							<input name="user_email1" id="user_email1" class="form-control-sm" onchange = "u_emailchange();"><a>@</a> <input
-								name="user_email2" id="user_email2" class="form-control-sm" onchange = "u2_emailchange();" disabled value="선택해주세요">
-							<select name="selectEmail" id="selectEmail" class="form-control-sm">
+							<input name="user_email1" id="user_email1"
+								class="form-control-sm" onchange="u_emailchange();"><a>@</a>
+							<input name="user_email2" id="user_email2"
+								class="form-control-sm" onchange="u2_emailchange();" disabled
+								value="선택해주세요"> <select name="selectEmail"
+								id="selectEmail" class="form-control-sm">
 								<option value="self">직접입력</option>
 								<option value="naver.com" selected>naver.com</option>
 								<option value="hanmail.net">hanmail.net</option>
@@ -252,12 +260,14 @@
 						<form>
 							<div>아이디 : ${vo.user_id }</div>
 							<div>
-								비밀번호 : <input name="user_pw1" class="form-control-sm" type="password">
+								비밀번호 : <input name="user_pw1" class="form-control-sm"
+									type="password">
 							</div>
 							<div>
-								비밀번호 재 입력 : <input name="user_pw2" class="form-control-sm" type="password"> <input
-									type="button" value="회원 탈퇴" placeholder="비밀 번호를 입력하세요"
-									class="btn btn-outline-dark" onclick="del(this.form)">
+								비밀번호 재 입력 : <input name="user_pw2" class="form-control-sm"
+									type="password"> <input type="button" value="회원 탈퇴"
+									placeholder="비밀 번호를 입력하세요" class="btn btn-outline-dark"
+									onclick="del(this.form)">
 							</div>
 						</form>
 					</div>
@@ -286,17 +296,17 @@
 
 		//이메일 중복체크
 		function e_double(f) {
-			
-			if(f.user_email1.value == ''){
+
+			if (f.user_email1.value == '') {
 				alert("이메일을 입력해 주세요");
 				return;
 			}
-			
-			if(f.user_email2.value == ''){
+
+			if (f.user_email2.value == '') {
 				alert("이메일을 입력해 주세요");
 				return;
 			}
-			
+
 			var user_email = "user_email=" + f.user_email1.value.trim() + "@"
 					+ f.user_email2.value.trim();
 
@@ -324,20 +334,20 @@
 		//이메일 인증
 		function certifyEmail(f) {
 			e_check2 = "no";
-			
-			if(f.user_email1.value == ''){
+
+			if (f.user_email1.value == '') {
 				alert("이메일을 입력해 주세요");
 				return;
 			}
-			
-			if(f.user_email2.value == ''){
+
+			if (f.user_email2.value == '') {
 				alert("이메일을 입력해 주세요");
 				return;
 			}
-			
+
 			var user_email = "user_email=" + f.user_email1.value.trim() + "@"
 					+ f.user_email2.value.trim();
-			
+
 			$.ajax({
 				type : "post",
 				url : "certifyEmail.do",
@@ -365,29 +375,30 @@
 				return;
 			}
 		}
-		
+
 		function c_email(f) { // 이메일 변경 버튼
-			
+
 			var user_email1 = f.user_email1.value;
 			var user_email2 = f.user_email2.value;
-			
+
 			if (user_email1 == '') {
 				alert('변경할 이메일을 입력해주세요');
 				return;
 			}
-			
-			if(e_check == "no"){
+
+			if (e_check == "no") {
 				alert("중복체크를 해주세요");
 				return;
 			}
-			if(e_check2 == "no"){
+			if (e_check2 == "no") {
 				alert("email인증을 해주세요");
 				return;
 			}
-			
-			var url = "c_email.do?user_email1=" + user_email1 + "&user_email2=" + user_email2;
+
+			var url = "c_email.do?user_email1=" + user_email1 + "&user_email2="
+					+ user_email2;
 			/*var param = "user_email1=" + user_email1 + "&user_email2=" + user_email2;
-		*/
+			 */
 			sendRequest(url, null, c_emailFn, "post");
 		}
 		function c_emailFn() {
@@ -403,19 +414,19 @@
 
 			}
 		}
-		
+
 		//onchange = u_emailchange();
 		function u_emailchange() {
 			e_check = 'no';
 			e_check2 = 'no';
 		}
-		
+
 		//onchange = u2_emailchange();
 		function u2_emailchange() {
 			e_check = 'no';
 			e_check2 = 'no';
 		}
-		
+
 		function del(f) {
 			var user_pw1 = f.user_pw1.value.trim();
 			var user_pw2 = f.user_pw2.value.trim();
@@ -457,7 +468,7 @@
 				}
 			}
 		}
-		
+
 		function c_pw(f) { // 비밀번호 변경 버튼
 			var c_pw1 = f.p1.value.trim();
 			var c_pw2 = f.p2.value.trim();
@@ -475,13 +486,14 @@
 				alert("변경할 비밀번호를 입력해주세요");
 				return;
 			}
-			if (c_pw2 != c_pw3){
+			if (c_pw2 != c_pw3) {
 				alert("변경할 비밀번호가 일치하지 않습니다");
 				return;
 			}
 
 			var url = "c_pw.do"
-			var param = "c_pw1=" + c_pw1 + "&c_pw2=" + c_pw2 + "&c_pw3=" + c_pw3;
+			var param = "c_pw1=" + c_pw1 + "&c_pw2=" + c_pw2 + "&c_pw3="
+					+ c_pw3;
 			sendRequest(url, param, c_pwFn, "post")
 		}
 		function c_pwFn() {
@@ -492,7 +504,7 @@
 					alert('기존 비밀번호와 일치하지 않습니다.');
 					return;
 				}
-				
+
 				if (json[0].param == 'equal') {
 					alert('변경할 비밀번호가 기존의 비밀번호와 일치합니다.');
 					return;
@@ -503,17 +515,23 @@
 				}
 			}
 		}
-		
+
 		/* KAKAO ADDRESS */
 		window.onload = function() {
-			$(".user_addr_c").click(function() { //class = user_addr_class 클릭시 동작
-				new daum.Postcode({
-					oncomplete: function(data) { //선택시 입력값 세팅					
-						document.getElementById("addr").value = data.address; // 주소 넣기
-						document.querySelector("input[name=user_daddr]").focus(); //상세입력 포커싱
-					}
-				}).open();
-			})
+			$(".user_addr_c")
+					.click(
+							function() { //class = user_addr_class 클릭시 동작
+								new daum.Postcode(
+										{
+											oncomplete : function(data) { //선택시 입력값 세팅					
+												document.getElementById("addr").value = data.address; // 주소 넣기
+												document
+														.querySelector(
+																"input[name=user_daddr]")
+														.focus(); //상세입력 포커싱
+											}
+										}).open();
+							})
 
 		}
 
@@ -533,7 +551,7 @@
 		function nick_change() {
 			nick_check = "no";
 		}
-		
+
 		function double_nick_check(f) {
 			var user_nick = f.nick.value;
 
