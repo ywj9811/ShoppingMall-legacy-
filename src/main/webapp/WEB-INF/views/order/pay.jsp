@@ -50,26 +50,26 @@ div {
 			<div>
 				<div>이름</div>
 				<div>
-					<input id="name" name="name" placeholder="이름을 입력하시오">
+					<input id="name" name="name" class="form-control" placeholder="이름을 입력하시오">
 				</div>
 			</div>
 			<!-- 세션에서 받아온 사용자 이름 -->
 			<div>
 				<div>주소</div>
-				<input type="text" id="address" name="address" placeholder="주소">
+				<input type="text" id="address" name="address" class="form-control" placeholder="주소">
 				<input type="button" class="btn btn-outline-dark"
 					onclick="sample6_execDaumPostcode()" value="주소 찾기"> <input
-					type="text" id="detailAddress" name="detail" placeholder="상세주소">
+					type="text" id="detailAddress" name="detail" class="form-control" placeholder="상세주소">
 			</div>
 			<div>
 				<div>휴대 전화</div>
-				<input type="text" placeholder="'-'제외하고  입력하세요" name="tel"
+				<input type="text" placeholder="'-'제외하고  입력하세요" name="tel" class="form-control"
 					maxlength='11'>
 			</div>
 			<div>
 				<div>배송시 요청사항</div>
-				<input type="text" name="want" id="want"
-					placeholder="배송시 요청사항을 적어주세요"> <select id="want_select">
+				<input type="text" name="want" id="want" class="form-control-sm"
+					placeholder="배송시 요청사항을 적어주세요"> <select id="want_select" >
 					<option value="1" selected>직접입력</option>
 					<option value="부재시 문앞에 놓고 가주세요">부재시 문앞에 놓고 가주세요</option>
 					<option value="부재시 경비실에 두고 가주세요">부재시 경비실에 두고 가주세요</option>

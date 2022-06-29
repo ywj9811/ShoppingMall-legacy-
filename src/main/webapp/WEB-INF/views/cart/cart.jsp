@@ -96,7 +96,7 @@ table, td, tr {
 		</div>
 		<div id="totaldel" class="del">
 			전체 삭제 <img src="resources/image/biggarbagebin_121980.png"
-				onclick="delAll()">
+				onclick="delAll()" style="cursor: pointer;">
 		</div>
 		<div class="center_bottom">
 			<form id="totalpay">

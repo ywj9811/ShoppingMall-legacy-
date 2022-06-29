@@ -107,7 +107,7 @@
 						<div>아이디 : ${vo.user_id }</div>
 						<form>
 							<div>닉네임 : ${vo.user_nick }</div>
-							<input name="nick" onchange="nick_change();"> <input
+							<input name="nick" class="form-control-sm" onchange="nick_change();"> <input
 								type="button" value="중복체크" class="btn btn-outline-dark"
 								onclick="double_nick_check(this.form);">
 							<div>
@@ -132,13 +132,13 @@
 					<div class="accordion-body">
 						<form>
 							<div>
-								<input name="p1" type="password" placeholder="기존 비밀번호 입력">
+								<input name="p1" type="password" class="form-control-sm" placeholder="기존 비밀번호 입력">
 							</div>
 							<div>
-								<input name="p2" type="password" placeholder="새 비밀번호 입력">
+								<input name="p2" type="password" class="form-control-sm" placeholder="새 비밀번호 입력">
 							</div>
 							<div>
-								<input name="p3" type="password" placeholder="새 비밀번호 재 입력">
+								<input name="p3" type="password" class="form-control-sm" placeholder="새 비밀번호 재 입력">
 							</div>
 							<input type="button" value="비밀번호 변경" class="btn btn-outline-dark"
 								onclick="c_pw(this.form);">
@@ -158,10 +158,10 @@
 					class="accordion-collapse collapse"
 					aria-labelledby="panelsStayOpen-headingFour">
 					<div class="accordion-body">
-						<input type="text" value="${vo.user_tel }">
+						<input type="text" class="form-control-sm" value="${vo.user_tel }">
 						<form>
 							<div>
-								<input name="tel" placeholder="'-'를 제외하고 입력하세요" maxlength='11'>
+								<input name="tel" class="form-control-sm" placeholder="'-'를 제외하고 입력하세요" maxlength='11'>
 							</div>
 							<input type="button" value="휴대폰번호 변경"
 								class="btn btn-outline-dark" onclick="c_tel(this.form);">
@@ -186,10 +186,10 @@
 							<div>현재 주소 : ${vo.user_addr }</div>
 							<div>현재 상세 : ${vo.user_daddr }</div>
 							<div class="user_addr_c">
-								주소 :<input id="addr" name="user_addr">
+								주소 :<input id="addr" name="user_addr" class="form-control-sm" >
 							</div>
 							<div>
-								상세 주소 : <input name="user_daddr">
+								상세 주소 : <input name="user_daddr" class="form-control-sm">
 							</div>
 							<input type="button" value="주소 변경" class="btn btn-outline-dark"
 								onclick="c_addr(this.form);">
@@ -210,9 +210,9 @@
 					<div class="accordion-body">
 						<div>현재 이메일 : ${vo.user_email }</div>
 						<form>
-							<input name="user_email1" id="user_email1"><a>@</a> <input
-								name="user_email2" id="user_email2" disabled value="선택해주세요">
-							<select name="selectEmail" id="selectEmail">
+							<input name="user_email1" id="user_email1" class="form-control-sm" onchange = "u_emailchange();"><a>@</a> <input
+								name="user_email2" id="user_email2" class="form-control-sm" onchange = "u2_emailchange();" disabled value="선택해주세요">
+							<select name="selectEmail" id="selectEmail" class="form-control-sm">
 								<option value="self">직접입력</option>
 								<option value="naver.com" selected>naver.com</option>
 								<option value="hanmail.net">hanmail.net</option>
@@ -252,10 +252,10 @@
 						<form>
 							<div>아이디 : ${vo.user_id }</div>
 							<div>
-								비밀번호 : <input name="user_pw1" type="password">
+								비밀번호 : <input name="user_pw1" class="form-control-sm" type="password">
 							</div>
 							<div>
-								비밀번호 재 입력 : <input name="user_pw2" type="password"> <input
+								비밀번호 재 입력 : <input name="user_pw2" class="form-control-sm" type="password"> <input
 									type="button" value="회원 탈퇴" placeholder="비밀 번호를 입력하세요"
 									class="btn btn-outline-dark" onclick="del(this.form)">
 							</div>
@@ -402,6 +402,18 @@
 				}
 
 			}
+		}
+		
+		//onchange = u_emailchange();
+		function u_emailchange() {
+			e_check = 'no';
+			e_check2 = 'no';
+		}
+		
+		//onchange = u2_emailchange();
+		function u2_emailchange() {
+			e_check = 'no';
+			e_check2 = 'no';
 		}
 		
 		function del(f) {

@@ -119,6 +119,7 @@
 				<label class="form-label">생년월일</label> <input class="form-control"
 					name="birth" type="date">
 			</div>
+			
 			<div style="display: flex; justify-content: space-evenly;">
 				<label class="form-label">성별</label>
 				<div>
