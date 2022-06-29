@@ -44,7 +44,6 @@
 	justify-content: space-around;
 }
 </style>
-<!-- test -->
 <script>
 	function send(f) {
 
