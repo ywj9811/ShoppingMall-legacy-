@@ -45,10 +45,6 @@
 
 </head>
 <body>
-
-<!-- ㅁㄴㅇㄴㅁㅇ -->
-<!-- ㅁㄴㅇㄴㅁㅇ -->
-<!-- ㅁㄴㅇㄴㅁㅇ -->
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
 	<div class="info">
 		<div>
