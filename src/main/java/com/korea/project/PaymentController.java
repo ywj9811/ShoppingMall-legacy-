@@ -7,9 +7,8 @@ import dao.PaymentDAO;
 
 @Controller
 public class PaymentController {
-	
+
 	@Autowired
 	PaymentDAO payment_dao;
-	
 
 }
