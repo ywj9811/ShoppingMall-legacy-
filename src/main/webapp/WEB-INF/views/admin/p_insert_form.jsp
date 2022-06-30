@@ -57,7 +57,7 @@
 					<select id="selectbox" name="p_info_lType">
 						<option value="남성">남성</option>
 						<option value="여성">여성</option>
-						<option value="잡화">잡화</option>
+						<option value="잡화/악세사리">잡화/악세사리</option>
 					</select>
 					
 					</td>

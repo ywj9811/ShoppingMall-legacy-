@@ -29,6 +29,7 @@
 	padding: 30px;
 	width: 1920px;
 	margin: auto;
+	flex-wrap: wrap;
 }
 
 .content {

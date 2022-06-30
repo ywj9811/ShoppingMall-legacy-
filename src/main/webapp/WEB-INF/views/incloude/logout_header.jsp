@@ -73,6 +73,7 @@ li {
             <li><a href="p_list.do?ltype=여성&mtype=상의">상의</a></li>
             <li><a href="p_list.do?ltype=여성&mtype=하의">하의</a></li>
             <li><a href="p_list.do?ltype=여성&mtype=아우터">아우터</a></li>
+            <li><a href="p_list.do?ltype=여성&mtype=신발">신발</a></li>
          </ul></li>
 
       <li><a class="category" href="#">Men</a>
@@ -80,12 +81,13 @@ li {
             <li><a href="p_list.do?ltype=남성&mtype=상의">상의</a></li>
             <li><a href="p_list.do?ltype=남성&mtype=하의">하의</a></li>
             <li><a href="p_list.do?ltype=남성&mtype=아우터">아우터</a></li>
+            <li><a href="p_list.do?ltype=남성&mtype=신발">신발</a></li>
          </ul></li>
 
       <li><a class="category" href="#">Life / Accessories </a>
          <ul class="inner">
-            <li><a href="p_list.do?ltype=잡화/악세서리&mtype=잡화">Life</a></li>
-            <li><a href="p_list.do?ltype=잡화/악세서리&mtype=악세서리">Accessories</a></li>
+            <li><a href="p_list.do?ltype=잡화/악세사리&mtype=잡화">Life</a></li>
+            <li><a href="p_list.do?ltype=잡화/악세사리&mtype=악세사리">Accessories</a></li>
          </ul></li>
       <li><a href="today.do?ltype=세일" class="category">Today Sale </a>
       <li><a href="cart.do" class="category">Cart </a>
