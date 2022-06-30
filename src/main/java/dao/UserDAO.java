@@ -115,7 +115,7 @@ public class UserDAO {
 		return list;
 	}
 
-	// @@ MyPpage 회원정보 변경 @@ //
+	// @@ MyPpage 회원정보 변경 @@  KSG//
 
 	// @@ 1. 프로필 사진 변경 @@ //
 	public int c_profile(UserVO vo) {
