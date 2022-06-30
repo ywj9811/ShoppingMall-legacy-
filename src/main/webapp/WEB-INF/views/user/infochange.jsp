@@ -48,7 +48,7 @@
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
 	<div class="info">
 		<div>
-			<img src="resources/upload/${vo.user_profile }" width="80">
+			<img src="${vo.user_profile }" width="80">
 		</div>
 		<div>닉네임 : ${vo.user_nick }</div>
 		<div>회원 등급 : ${vo.user_class }</div>

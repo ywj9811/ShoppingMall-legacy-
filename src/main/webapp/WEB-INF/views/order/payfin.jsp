@@ -12,7 +12,6 @@
 	
 	<h2>주문이 완료되었습니다.</h2>
 	<c:forEach var="list" items="${list }">
-		${ list.p_info_img1 }
 		${ list.p_info_name }
 		(
 		${ list.p_detail_size }

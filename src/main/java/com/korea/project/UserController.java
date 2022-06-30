@@ -159,7 +159,7 @@ public class UserController {
 		// upload된 파일의 정보
 		MultipartFile user_photo = vo.getUser_photo();
 
-		String filename = "no_file";
+		String filename = "https://image.msscdn.net/images/goods_img/20190426/1028761/1028761_1_500.jpg";
 
 		if (!user_photo.isEmpty()) {
 			filename = user_photo.getOriginalFilename(); // 업로드 될 실제 파일명

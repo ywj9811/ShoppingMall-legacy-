@@ -66,7 +66,7 @@ table, td, tr {
 						<div class="info">
 							<div>
 								<div class="img">
-									<img src="resources/upload/${ view_list.p_info_img1 }">
+									<img src="${ view_list.p_info_img1 }">
 								</div>
 							</div>
 							<div>

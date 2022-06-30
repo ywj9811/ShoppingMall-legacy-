@@ -49,7 +49,7 @@
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
 	<div class="info">
 		<div>
-			<img src="resources/upload/${vo.user_profile }"
+			<img src="${vo.user_profile }"
 				width="80">
 		</div>
 		<div>닉네임 : ${vo.user_nick }</div>
@@ -80,7 +80,7 @@
 						type="hidden" value="${list.p_info_dcode }">
 					<div>
 						<div>
-							<img src="resources/upload/${ list.p_info_img1 }">
+							<img src="${ list.p_info_img1 }">
 						</div>
 						<a> ${ list.p_info_name } ${ list.p_info_price } (${ list.p_detail_size }
 							/ ${ list.p_detail_color })</a>

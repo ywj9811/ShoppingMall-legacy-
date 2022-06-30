@@ -93,7 +93,7 @@ div {
 				<div>총 가격 : ${ total }</div>
 				<div>
 					<input type="button" value="결제하기" class="btn btn-outline-dark"
-						onclick="requestPay(this.form);">
+						onclick="test(this.form);">
 				</div>
 			</div>
 		</div>
