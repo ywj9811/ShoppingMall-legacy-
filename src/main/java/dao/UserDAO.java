@@ -14,24 +14,25 @@ import vo.UserVO;
 public class UserDAO {
 	@Autowired
 	SqlSession sqlSession;
-	public int c_user_out(HashMap<String, Object>map) {
-		int res = sqlSession.update("user.c_user_out",map);
+
+	public int c_user_out(HashMap<String, Object> map) {
+		int res = sqlSession.update("user.c_user_out", map);
 		return res;
 	}
-	
-	//email중복 확인
+
+	// email중복 확인
 	public UserVO echeck(String user_email) {
 		UserVO vo = sqlSession.selectOne("user.e_check", user_email);
 		return vo;
 	}
-	
-	//회원탈퇴 취소
+
+	// 회원탈퇴 취소
 	public int restore(UserVO vo) {
 		int res = sqlSession.update("user.restore", vo);
 		return res;
 	}
 
-	//login할때 마지막 로그인 날짜 수정
+	// login할때 마지막 로그인 날짜 수정
 	public int logupdate(UserVO vo) {
 		int res = sqlSession.update("user.logdate", vo);
 		return res;
@@ -41,6 +42,7 @@ public class UserDAO {
 		int res = sqlSession.update("user.classup", vo);
 		return res;
 	}
+
 	public UserVO uservo(int user_code) {
 		UserVO vo = sqlSession.selectOne("user.user_vo", user_code);
 		return vo;
@@ -71,45 +73,44 @@ public class UserDAO {
 		return res;
 	}
 
-	//nick 중복체크
+	// nick 중복체크
 	public UserVO nickselectOne(String user_nick) {
 		UserVO vo = sqlSession.selectOne("user.nickSelectOne", user_nick);
 
 		return vo;
 	}
 
-	//id 중복체크
+	// id 중복체크
 	public UserVO selectOne(String user_id) {
 
-		UserVO vo = sqlSession.selectOne("user.selectOne",user_id);
+		UserVO vo = sqlSession.selectOne("user.selectOne", user_id);
 
 		return vo;
 	}
 
-	//로그인
+	// 로그인
 	public UserVO login(String user_id) {
-
 
 		UserVO vo = sqlSession.selectOne("user.user_login", user_id);
 		return vo;
 	}
 
-	//id 찾기
+	// id 찾기
 	public List<UserVO> id_search(String user_email) {
 		List<UserVO> list = sqlSession.selectList("user.user_id_search", user_email);
 		return list;
 	}
 
-	//pw 찾기
+	// pw 찾기
 	public UserVO pw_search(String user_id) {
 		UserVO vo = sqlSession.selectOne("user.user_pw_search", user_id);
 		return vo;
 	}
 
 	//
-	public List<UserVO> user_info(int user_code){
+	public List<UserVO> user_info(int user_code) {
 
-		List<UserVO> list = sqlSession.selectList("user.user_info",user_code);
+		List<UserVO> list = sqlSession.selectList("user.user_info", user_code);
 
 		return list;
 	}
@@ -143,7 +144,7 @@ public class UserDAO {
 	// @@ 3-2 비밀번호 변경 @@ //
 	public int c_pw(HashMap<String, Object> map) {
 
-		int res = sqlSession.update("user.c_pw",map);
+		int res = sqlSession.update("user.c_pw", map);
 
 		return res;
 	}
@@ -171,12 +172,11 @@ public class UserDAO {
 
 		return res;
 	}
-	
-	
-	//관리자 스케줄러 
-		public void updateUser() {
-		
-			 sqlSession.update("user.qui_change");
-			 sqlSession.update("user.del_change");
-		}
+
+	// 관리자 스케줄러
+	public void updateUser() {
+
+		sqlSession.update("user.qui_change");
+		sqlSession.update("user.del_change");
+	}
 }

@@ -3,6 +3,7 @@ package vo;
 public class Reply_ViewsVO {
 
 	public String p_info_name, user_nick, p_detail_size, p_detail_color, reply_content, reply_regdate, reply_ip;
+
 	public String getP_info_name() {
 		return p_info_name;
 	}

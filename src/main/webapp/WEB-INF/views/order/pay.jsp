@@ -63,13 +63,12 @@ div {
 			</div>
 			<div>
 				<div>휴대 전화</div>
-				<input type="text" placeholder="'-'제외하고  입력하세요" name="tel" class="form-control"
-					maxlength='11'>
+				<input type="text" placeholder="'-'제외하고  입력하세요" name="tel" class="form-control" maxlength='11'>
 			</div>
 			<div>
 				<div>배송시 요청사항</div>
-				<input type="text" name="want" id="want" class="form-control-sm"
-					placeholder="배송시 요청사항을 적어주세요"> <select id="want_select" >
+				<input type="text" name="want" id="want" class="form-control-sm"placeholder="배송시 요청사항을 적어주세요">
+				<select id="want_select" >
 					<option value="1" selected>직접입력</option>
 					<option value="부재시 문앞에 놓고 가주세요">부재시 문앞에 놓고 가주세요</option>
 					<option value="부재시 경비실에 두고 가주세요">부재시 경비실에 두고 가주세요</option>
@@ -77,8 +76,7 @@ div {
 				</select>
 			</div>
 			<div class="info_p">
-				<c:forEach var="view_list" items="${ view_list }"
-					varStatus="listcount">
+				<c:forEach var="view_list" items="${ view_list }" varStatus="listcount">
 					<div>상품 이름 : ${ view_list.p_info_name } (${ view_list.p_detail_color }/${ view_list.p_detail_size })
 					</div>
 					<div>상품 가격 : ${ view_list.p_info_price }원</div>
@@ -87,13 +85,11 @@ div {
 
 			<div style="text-align: center;">
 				<div>
-					<input type="hidden" name="total" value="${ total }"> 수량 :
-					${ count }
+					<input type="hidden" name="total" value="${ total }"> 수량 : ${ count }
 				</div>
 				<div>총 가격 : ${ total }</div>
 				<div>
-					<input type="button" value="결제하기" class="btn btn-outline-dark"
-						onclick="test(this.form);">
+					<input type="button" value="결제하기" class="btn btn-outline-dark"	onclick="test(this.form);">
 				</div>
 			</div>
 		</div>

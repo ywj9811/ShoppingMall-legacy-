@@ -23,7 +23,7 @@ import vo.Sale_Status_ViewVO;
 @Controller
 public class AdminController {
 	private static final String VIEW_PATH = "/WEB-INF/views/";
-	
+
 	@Autowired
 	HttpSession session;
 
@@ -43,7 +43,7 @@ public class AdminController {
 	Sale_Status_ViewDAO sale_status_view_dao;
 
 	// 관리자 로그인 페이지 이동
-	@RequestMapping("admin_login.do" )
+	@RequestMapping("admin_login.do")
 	public String admin_login() {
 		System.out.println("asdsadasdsad");
 		return VIEW_PATH + "admin/admin_login.jsp";
@@ -101,7 +101,6 @@ public class AdminController {
 			check = "no";
 
 		}
-
 		return check;
 	}
 

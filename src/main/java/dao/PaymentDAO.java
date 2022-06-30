@@ -10,12 +10,12 @@ import vo.PaymentVO;
 public class PaymentDAO {
 	@Autowired
 	SqlSession sqlSession;
-	
+
 	public PaymentVO selectvo(PaymentVO vo) {
 		PaymentVO pvo = sqlSession.selectOne("payment.paymentvo", vo);
 		return pvo;
 	}
-	
+
 	public int insert(PaymentVO vo) {
 		int res = sqlSession.insert("payment.payment_insert", vo);
 		return res;

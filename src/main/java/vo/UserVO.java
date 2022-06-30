@@ -4,15 +4,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UserVO {
 
-	private int  user_code, user_status, user_total, user_class, user_gender, user_birth;
-	//          고객고유번호         회원 상태                  누적 결제금액         회원등급               성별                    생년월일  
+	private int user_code, user_status, user_total, user_class, user_gender, user_birth;
+	// 고객고유번호 회원 상태 누적 결제금액 회원등급 성별 생년월일
 	private String user_id, user_pw, user_name, user_tel, user_logdate;
-	//       	   회원 아이디          회원 비번         회원 이름              회원 전화번호
-	private String user_email, user_addr, user_daddr, user_regdate,user_profile,user_nick;
-	//               회원 이메일         회원 주소             				가입일                      프로필 사진               닉네임
+	// 회원 아이디 회원 비번 회원 이름 회원 전화번호
+	private String user_email, user_addr, user_daddr, user_regdate, user_profile, user_nick;
+	// 회원 이메일 회원 주소 가입일 프로필 사진 닉네임
 	private MultipartFile user_photo;
-	//        프로필 사진의 저장을 위한 객체 (실제 DB에 없는 컬럼)
-	
+	// 프로필 사진의 저장을 위한 객체 (실제 DB에 없는 컬럼)
+
 	public String getUser_logdate() {
 		return user_logdate;
 	}
@@ -69,7 +69,6 @@ public class UserVO {
 		this.user_birth = user_birth;
 	}
 
-	
 	public int getUser_code() {
 		return user_code;
 	}

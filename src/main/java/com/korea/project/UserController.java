@@ -198,7 +198,6 @@ public class UserController {
 		// response.sendRedirect("login_form.do");
 		return "redirect:login.do"; // 로그인 페이지
 
-		// return VIEW_PATH + "shop_member_info.jsp";
 	}
 
 	// id 중복체크
@@ -369,7 +368,7 @@ public class UserController {
 			return VIEW_PATH + "user/login.jsp";
 		}
 
-		String filename = "no_file";
+		String filename ="";
 
 		String webPath = "/resources/upload/"; // 절대 경로
 
@@ -554,7 +553,6 @@ public class UserController {
 		return resultStr;
 	}
 
-	///////////////////////////////////// 작업!!
 	@RequestMapping(value = { "orderlist.do" }) // MyPage > 주문 내역 페이지
 	public String orderlist(Model model) {
 		HttpSession session = request.getSession();

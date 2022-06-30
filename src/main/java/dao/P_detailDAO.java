@@ -15,7 +15,7 @@ import vo.P_detailVO;
 public class P_detailDAO {
 	@Autowired
 	SqlSession sqlSession;
-	
+
 	public Map<String, List<String>> p_dinfo(int p_info_code) {
 
 		List<P_detailVO> list = sqlSession.selectList("p_detail.p_detail", p_info_code);
@@ -37,52 +37,52 @@ public class P_detailDAO {
 
 		return map;
 	}
-	
+
 	public int cellplus(int p_info_dcode) {
 		int res = sqlSession.update("p_detail.plus", p_info_dcode);
 		return res;
 	}
-	
-	public P_detailVO select(int p_info_dcode){
+
+	public P_detailVO select(int p_info_dcode) {
 		P_detailVO vo = sqlSession.selectOne("p_detail.p_code_vo", p_info_dcode);
 		return vo;
 	}
-	
+
 	public P_detailVO selectvo(P_detailVO pvo) {
 		P_detailVO vo = sqlSession.selectOne("p_detail.pvo", pvo);
 		return vo;
 	}
-	
-	public P_detailVO selectd(int p_info_code){
+
+	public P_detailVO selectd(int p_info_code) {
 		P_detailVO vo = sqlSession.selectOne("p_detail.p_dcode_vo", p_info_code);
 		return vo;
 	}
-	
-	public List<P_detailVO> selectList(int p_info_code){
+
+	public List<P_detailVO> selectList(int p_info_code) {
 		List<P_detailVO> list = sqlSession.selectList("p_detail.p_dlist", p_info_code);
 		return list;
 	}
-	
-	public List<P_detailVO> p_adinfo(int p_info_code) { //임시
-		
+
+	public List<P_detailVO> p_adinfo(int p_info_code) { // 임시
+
 		List<P_detailVO> list = sqlSession.selectList("p_detail.p_adetail", p_info_code);
 
 		return list;
 	}
-	
+
 	// 관리자 상품 등록
-		public void insert(int p_info_code,String size, String color) {
-			String[] arrSize=size.split(",");
-			String[] arrColor=color.split(",");
-			
-			for(int i = 0 ; i <arrSize.length ; i ++) {
-				for(int j=0 ; j < arrColor.length ; j++) {
-					HashMap<String,Object> map=new HashMap<String,Object>();
-					map.put("p_info_code",p_info_code);
-					map.put("p_detail_size",arrSize[i]);
-					map.put("p_detail_color",arrColor[j]);
-					sqlSession.insert("p_detail.insert",map);
-				}
+	public void insert(int p_info_code, String size, String color) {
+		String[] arrSize = size.split(",");
+		String[] arrColor = color.split(",");
+
+		for (int i = 0; i < arrSize.length; i++) {
+			for (int j = 0; j < arrColor.length; j++) {
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("p_info_code", p_info_code);
+				map.put("p_detail_size", arrSize[i]);
+				map.put("p_detail_color", arrColor[j]);
+				sqlSession.insert("p_detail.insert", map);
 			}
 		}
+	}
 }

@@ -13,6 +13,7 @@ import vo.Reply_ViewsVO;
 public class ReplyDAO {
 	@Autowired
 	SqlSession sqlSession;
+
 	// 상품 정보 구매후기
 	public List<Reply_ViewsVO> reply(int p_info_code) {
 		List<Reply_ViewsVO> list = sqlSession.selectList("reply.reply", p_info_code);

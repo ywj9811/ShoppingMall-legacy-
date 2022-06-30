@@ -85,16 +85,10 @@ table, td, tr {
 					</form>
 				</c:forEach>
 			</c:if>
-
-			<c:if test="${ total eq 0 }">
-					아직 아무것도 담지 않았습니다.
-				</c:if>
-
-
+			<c:if test="${ total eq 0 }">아직 아무것도 담지 않았습니다.</c:if>
 		</div>
 		<div id="totaldel" class="del">
-			전체 삭제 <img src="resources/image/biggarbagebin_121980.png"
-				onclick="delAll()" style="cursor: pointer;">
+			전체 삭제 <img src="resources/image/biggarbagebin_121980.png" onclick="delAll()" style="cursor: pointer;">
 		</div>
 		<div class="center_bottom">
 			<form id="totalpay">
@@ -168,7 +162,6 @@ table, td, tr {
 				document.getElementById('sailtotal').innerHTML = json[2].param;
 			}
 		}
-		//////////////////////////////////////////////////////////////
 		function delOne() {
 			if (!confirm("삭제하시겠습니까?")) {
 				return;
@@ -188,7 +181,6 @@ table, td, tr {
 			location.href = "delAll.do";
 		}
 
-		/////////////////////////////////////////////////////////////
 		function pay(f) {
 			var total = f.total.value;
 			if (total == 0) {

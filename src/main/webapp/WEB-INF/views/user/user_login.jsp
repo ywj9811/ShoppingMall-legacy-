@@ -75,9 +75,7 @@
 					아니시라면 간편하게 가입하실 수 있습니다.
 				</div>
 				<div>
-					<input type="button" class="btn btn-outline-dark"
-						name="member_join" value="회원가입"
-						onclick="location.href = 'shop_join.do'">
+					<input type="button" class="btn btn-outline-dark" name="member_join" value="회원가입"	onclick="location.href = 'shop_join.do'">
 				</div>
 			</div>
 		</div>
