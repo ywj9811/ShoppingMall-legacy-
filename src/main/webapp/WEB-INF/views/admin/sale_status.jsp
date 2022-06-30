@@ -80,7 +80,7 @@
 	<jsp:include page="/WEB-INF/views/incloude/login_header.jsp"></jsp:include>
 	
 			<fieldset>
-	  <legend>BEAN</legend>
+	  <legend></legend>
 	  <div id="total">
 	    <h2>총 판매량 : ${map.total_sales}</h2>
 	     <h2> 총 판매금액 : ${map.total_amount }</h2>

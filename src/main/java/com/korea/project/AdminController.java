@@ -16,7 +16,6 @@ import dao.AdminDAO;
 import dao.P_detailDAO;
 import dao.P_infoDAO;
 import dao.Sale_Status_ViewDAO;
-import util.Path;
 import vo.AdminVO;
 import vo.P_infoVO;
 import vo.Sale_Status_ViewVO;
