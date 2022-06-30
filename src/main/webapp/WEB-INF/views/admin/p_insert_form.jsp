@@ -70,6 +70,8 @@
 							<option value="하의">하의</option>
 							<option value="신발">신발</option>
 							<option value="아우터">아우터</option>
+							<option value="잡화">잡화</option>
+							<option value="악세사리">악세사리</option>
 						</select>
 					</td>
 				</tr>
@@ -95,6 +97,11 @@
 							
 							<optgroup label="신발">
 								<option value="신발">신발</option>
+							</optgroup>
+							
+							<optgroup label="잡화">
+								<option value="잡회">잡화</option>
+								<option value="악세사리">악세사리</option>
 							</optgroup>
 						</select>
 					</td>
