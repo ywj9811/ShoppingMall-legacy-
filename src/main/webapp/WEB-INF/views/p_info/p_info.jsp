@@ -53,9 +53,6 @@
 			</div>
 
 			<div class="p_info_part">
-				<div>상품 대분류 : ${vo.p_info_lType }</div>
-				<div>상품 중분류 : ${vo.p_info_mType }</div>
-				<div>상품 소분류 : ${vo.p_info_sType }</div>
 				<div>상품 이름 : ${vo.p_info_name }</div>
 				<div>상품 가격 : ${vo.p_info_price }원</div>
 
