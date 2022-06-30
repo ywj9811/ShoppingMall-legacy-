@@ -29,6 +29,8 @@
 			<source src="resources/main.mp4" type="video/mp4">
 		</video>
 	</div>
+	
+	<input type="button" value="asd" onclick="location.href='admin_login.do'">
 </body>
 
 </html>

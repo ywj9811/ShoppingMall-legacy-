@@ -46,7 +46,7 @@
 		</STYLE>
 	</head>
 	<body>
-	<jsp:include page="login_header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/incloude/login_header.jsp"></jsp:include>
 				<fieldset>
 	  <legend>Bean</legend>
 		<form>

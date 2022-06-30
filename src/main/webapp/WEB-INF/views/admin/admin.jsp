@@ -16,7 +16,7 @@
 </c:if>
 </head>
 <body>
-	<jsp:include page="login_header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/incloude/login_header.jsp"></jsp:include>
 	
 	<input type="button" value="상품 등록" onclick="location.href='p_insert_form.do'">
 	

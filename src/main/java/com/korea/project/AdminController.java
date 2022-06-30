@@ -24,7 +24,7 @@ import vo.Sale_Status_ViewVO;
 @Controller
 public class AdminController {
 	private static final String VIEW_PATH = "/WEB-INF/views/";
-
+	
 	@Autowired
 	HttpSession session;
 
@@ -46,8 +46,8 @@ public class AdminController {
 	// 관리자 로그인 페이지 이동
 	@RequestMapping("admin_login.do" )
 	public String admin_login() {
-
-		return Path.VIEW_PATH + "admin_login.jsp";
+		System.out.println("asdsadasdsad");
+		return VIEW_PATH + "admin/admin_login.jsp";
 	}
 
 	// 관리자 계정 체크
@@ -71,13 +71,13 @@ public class AdminController {
 	@RequestMapping("admin.do")
 	public String admin() {
 
-		return Path.VIEW_PATH + "admin.jsp";
+		return VIEW_PATH + "admin/admin.jsp";
 	}
 
 	// 상품 등록 페이지로 가기
 	@RequestMapping("/p_insert_form.do")
 	public String insert_form() {
-		return Path.VIEW_PATH + "p_insert_form.jsp";
+		return VIEW_PATH + "admin/p_insert_form.jsp";
 	}
 
 	// 상품 등록 후 admin페이지로 되돌아가기
@@ -88,7 +88,7 @@ public class AdminController {
 
 		p_detail_dao.insert(testVO.getP_info_code(), p_detail_size, p_detail_color);
 
-		return Path.VIEW_PATH + "admin.jsp";
+		return VIEW_PATH + "admin/admin.jsp";
 	}
 
 	// 중복 게시물 체크
@@ -114,7 +114,7 @@ public class AdminController {
 
 		model.addAttribute("map", map);
 		model.addAttribute("list", list);
-		return Path.VIEW_PATH + "sale_status.jsp";
+		return VIEW_PATH + "admin/sale_status.jsp";
 
 	}
 
@@ -150,7 +150,7 @@ public class AdminController {
 		model.addAttribute("map", map);
 		model.addAttribute("list", list);
 		model.addAttribute("map2", map2);
-		return Path.VIEW_PATH + "sale_status.jsp";
+		return VIEW_PATH + "admin/sale_status.jsp";
 
 	}
 

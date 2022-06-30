@@ -52,9 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 									#{p_info_img2},
 									#{p_info_img3},
 									#{p_info_detail},
-						        	sysdate,
-						        	0,
-						        	sysdate)
+						        	sysdate
+						        	)
 	</insert>
 	
 	<!-- 관리자 -->
