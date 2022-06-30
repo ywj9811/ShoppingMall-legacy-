@@ -120,6 +120,8 @@
 		<input name="p_info_sType">
 		<input type="button" value="검색" onclick="search(this.form);">
 		<input type="button" value="전체검색" onclick="location.href='p_sell_list.do'">
+		<input type="button" value="돌아가기" onclick="location.href='admin.do'">
+		
 		</div>
 	  </form>
 	  

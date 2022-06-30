@@ -168,7 +168,8 @@
 				<tr>
 					<td colspan="2">
 					<input type="button" value="등록" onclick="insert_detail(this.form);">
-					<input type="button" value="중복확인" onclick="p_check(this.form);">				
+					<input type="button" value="중복확인" onclick="p_check(this.form);">		
+					<input type="button" value="돌아가기" onclick="location.href='admin.do'">		
 					</td>
 				</Tr>
 				
