@@ -114,9 +114,7 @@
 					<div>닉네임 : ${list.user_nick }</div>
 					<div>색상 :${list.p_detail_color } / 사이즈 :${list.p_detail_size }</div>
 					<div>
-						<textarea class="form-control" name="content" rows="3"
-							style="resize: none;" readonly><c:out
-								value="${ list.reply_content }" /></textarea>
+						<textarea class="form-control" name="content" rows="3" style="resize: none;" readonly><c:out value="${ list.reply_content }" /></textarea>
 					</div>
 				</form>
 				<hr>
