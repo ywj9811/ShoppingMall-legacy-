@@ -29,13 +29,6 @@
 	padding: 30px;
 	width: 1920px;
 	margin: auto;
-	flex-wrap: wrap;
-	justify-content: space-between
-}
-
-.photo {
-	height: 300px;
-	width: 300px;
 }
 
 .content {
@@ -90,7 +83,7 @@
 					style="cursor: pointer;">
 					<div class="data">
 						<div class="photo">
-							<img src="resources/upload/${vo.p_info_img1 }">
+							<img src="${vo.p_info_img1 }">
 						</div>
 						<div class="content">
 							<div class="price">가격 :${vo.p_info_price }원</div>

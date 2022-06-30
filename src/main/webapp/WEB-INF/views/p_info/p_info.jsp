@@ -47,15 +47,11 @@
 			<input name="p_info_code" type="hidden" value="${vo.p_info_code }">
 			<div class="img_part">
 				<div>
-					<img src="resources/upload/${vo.p_info_img1 }">
+					<img src="${vo.p_info_img1 }">
 				</div>
-				<%-- <div>
-					<img src="resources/upload/${vo.p_info_img2 }">
-				</div>
-				<div>
-					<img src="resources/upload/${vo.p_info_img3 }">
-				</div> --%>
+
 			</div>
+
 			<div class="p_info_part">
 				<div>상품 대분류 : ${vo.p_info_lType }</div>
 				<div>상품 중분류 : ${vo.p_info_mType }</div>
@@ -95,6 +91,18 @@
 		</div>
 	</form>
 
+	<hr>
+	<div class="content">
+		<h2>${ vo.p_info_detail }</h2>
+	</div>
+	<div class="centent">
+		<div>
+			<img src="${vo.p_info_img2 }" style="margin-left:500px; margin-top:100px;">
+		</div>
+		<div>
+			<img src="${vo.p_info_img3 }" style="margin-left:500px;">
+		</div>
+	</div>
 	<div>
 		<hr>
 	</div>
