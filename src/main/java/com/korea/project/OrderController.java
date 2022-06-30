@@ -85,6 +85,7 @@ public class OrderController {
 		model.addAttribute("view_list", view_list);
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);
+		
 		return VIEW_PATH + "order/pay.jsp";
 	}
 

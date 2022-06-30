@@ -155,7 +155,7 @@ public class UserController {
 		String webPath = "/resources/upload/"; // 절대 경로
 		String savePath = application.getRealPath(webPath);
 
-		System.out.println(savePath);
+		System.out.println("절대 경로 : " + savePath);
 		// upload된 파일의 정보
 		MultipartFile user_photo = vo.getUser_photo();
 
@@ -190,7 +190,6 @@ public class UserController {
 		} // if
 
 		vo.setUser_profile(filename);
-		System.out.println("user_profile : " + vo.getUser_profile());
 
 		// 회원가입 버튼 누를시 vo에 저장시키는 역할
 		user_dao.insert(vo);
@@ -218,7 +217,6 @@ public class UserController {
 	@RequestMapping("/check_id.do")
 	@ResponseBody
 	public String check(String user_id) {
-		System.out.println("controller");
 		UserVO vo = user_dao.selectOne(user_id);
 		String data = "yes";
 
@@ -368,7 +366,7 @@ public class UserController {
 			return VIEW_PATH + "user/login.jsp";
 		}
 
-		String filename ="";
+		String filename = "";
 
 		String webPath = "/resources/upload/"; // 절대 경로
 

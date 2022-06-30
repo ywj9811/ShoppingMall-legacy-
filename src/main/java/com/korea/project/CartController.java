@@ -193,19 +193,12 @@ public class CartController {
 		}
 
 		// info로 p_info_code가 넘어옴 이것으로 p_detailtbl접근, p_info_dcode얻어서 장바구니에서 삭제
-		System.out.println(cnt);
-		System.out.println(info);
 		CartViewVo cart_view = cart_dao.selectview(info);
 
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 
 		map.put("p_info_dcode", cart_view.getP_info_dcode());
 		map.put("user_code", uvo.getUser_code()); // 회원코드도 같이 보내야함
-
-		////
-		System.out.println(map.get("p_info_dcode"));
-		System.out.println(map.get("user_code"));
-		////
 
 		cart_dao.deleteOne(map);
 

@@ -25,12 +25,13 @@
 	</c:if>
 
 	<div class="bg">
-		<video muted autoplay loop >
+		<video muted autoplay loop>
 			<source src="resources/main.mp4" type="video/mp4">
 		</video>
 	</div>
-	
-	<input type="button" value="asd" onclick="location.href='admin_login.do'">
+
+	<input type="button" value="asd"
+		onclick="location.href='admin_login.do'">
 </body>
 
 </html>
