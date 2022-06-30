@@ -44,7 +44,7 @@ public class AdminController {
 	Sale_Status_ViewDAO sale_status_view_dao;
 
 	// 관리자 로그인 페이지 이동
-	@RequestMapping(value = { "/", "admin_login.do" })
+	@RequestMapping("admin_login.do" )
 	public String admin_login() {
 
 		return Path.VIEW_PATH + "admin_login.jsp";
