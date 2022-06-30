@@ -65,9 +65,8 @@ table, td, tr {
 							value="${ view_list.p_info_dcode }">
 						<div class="info">
 							<div>
-								<div class="img">
-									<img src="${ view_list.p_info_img1 }">
-								</div>
+								<img src="${ view_list.p_info_img1 }"
+									style="widows: 100px; height: 100px;">
 							</div>
 							<div>
 								<div>상품명(색상/사이즈) : ${ view_list.p_info_name }(${ view_list.p_detail_color }/${ view_list.p_detail_size })</div>
@@ -99,7 +98,8 @@ table, td, tr {
 		</div>
 		<div class="center_bottom">
 			<form id="totalpay">
-				<input type="hidden" id="paytotal" name="total" value="${ sailtotal }">
+				<input type="hidden" id="paytotal" name="total"
+					value="${ sailtotal }">
 				<table class="form_table">
 					<tr>
 						<td>상품 금액</td>
@@ -191,7 +191,7 @@ table, td, tr {
 		/////////////////////////////////////////////////////////////
 		function pay(f) {
 			var total = f.total.value;
-			if(total == 0){
+			if (total == 0) {
 				alert("장바구니가 비었습니다");
 				return;
 			}

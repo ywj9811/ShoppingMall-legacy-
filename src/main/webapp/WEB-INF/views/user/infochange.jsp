@@ -83,7 +83,7 @@
 					<div class="accordion-body">
 						<form id="test" enctype="multipart/form-data" method="post">
 							<div>
-								현재 프로필 사진 : <img src="resources/upload/${vo.user_profile }"
+								현재 프로필 사진 : <img src="${vo.user_profile }"
 									width="80">
 							</div>
 							<input type="file" class="form-control" name="user_photo">
