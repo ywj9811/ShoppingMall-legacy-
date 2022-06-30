@@ -14,20 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="pvo" resultType="p_detail" parameterType="p_detail">
-		select * from p_detailtbl where p_info_code = #{p_info_code}
-		and p_detail_size = #{p_detail_size}
-		and p_detail_color = #{p_detail_color}
+		select * from p_detailtbl where p_info_code = #{p_info_code} and p_detail_size = #{p_detail_size} and p_detail_color = #{p_detail_color}
 	</select>
 	
 	<select id="p_dcode_vo" resultType="p_detail"
 		parameterType="int">
-		select * from p_detailtbl where p_info_code =
-		#{p_info_code}
+		select * from p_detailtbl where p_info_code = #{p_info_code}
 	</select>
 
 	<select id="p_dlist" resultType="p_detail" parameterType="int">
-		select
-		* from p_detailtbl where p_info_code = #{p_info_code}
+		select * from p_detailtbl where p_info_code = #{p_info_code}
 	</select>
 
 	<select id="p_adetail" resultType="p_detail" parameterType="int">
@@ -35,24 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="plus" parameterType="int">
-		UPDATE p_detailtbl
-		SET
-		p_detail_cell = p_detail_cell + 1
-		WHERE
-		p_info_dcode = #{p_info_dcode}
+		UPDATE p_detailtbl SET p_detail_cell = p_detail_cell + 1 WHERE p_info_dcode = #{p_info_dcode}
 	</update>
-	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 
-		않음 -->
+	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
 		<!-- 관리자 -->
 		<insert id="insert" parameterType="java.util.HashMap">
-		insert into p_detailtbl values(
-				seq_p_detail.nextval,
-				#{p_info_code},
-				#{p_detail_size},
-				#{p_detail_color},
-				0
-		 )
-		
+		insert into p_detailtbl values(	seq_p_detail.nextval,#{p_info_code},#{p_detail_size},#{p_detail_color},0)
 	</insert>
 </mapper>
 

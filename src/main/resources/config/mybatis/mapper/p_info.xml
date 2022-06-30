@@ -30,8 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 검색 결과 클릭 후 하나의 정보 -->
 	<select id="p_info" resultType="p_info" parameterType="int">
-		select
-		*from p_infotbl where p_info_code=#{p_info_code}
+		select * from p_infotbl where p_info_code=#{p_info_code}
 	</select>
 	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
 	

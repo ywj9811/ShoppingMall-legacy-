@@ -28,12 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
 	<insert id="cartplus" parameterType="p_detail">
-		insert into carttbl values(
-			seq_cart.nextVal,
-			#{user_code},
-			#{p_info_dcode},
-			1
-		)
+		insert into carttbl values(	seq_cart.nextVal,#{user_code},#{p_info_dcode},1)
 	</insert>
 	
 	<delete id="delOne" parameterType="java.util.HashMap">

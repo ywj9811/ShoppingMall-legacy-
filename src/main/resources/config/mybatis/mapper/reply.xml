@@ -5,20 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="reply">
 <!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
-	<select id="reply" resultType="vo.Reply_ViewsVO"
-		parameterType="int">
-		select * from reply_views where p_info_code=
-		#{p_info_code}
+	<select id="reply" resultType="vo.Reply_ViewsVO" parameterType="int">
+		select * from reply_views where p_info_code=#{p_info_code}
 	</select>
 	
-	<select id="replycheck" resultType="reply"
-		parameterType="reply">
-		select * from replytbl where p_info_dcode=
-		#{p_info_dcode} and user_code = #{user_code} and payment_code = #{payment_code}
+	<select id="replycheck" resultType="reply" parameterType="reply">
+		select * from replytbl where p_info_dcode=#{p_info_dcode} and user_code = #{user_code} and payment_code = #{payment_code}
 	</select>
 	
 	<!-- MyPage 구매후기 검색 쿼리문 -->
-	<select id="user_reply" resultType="vo.Reply_ViewsVO"	parameterType="int">
+	<select id="user_reply" resultType="vo.Reply_ViewsVO" parameterType="int">
 		select * from reply_views where user_code = #{user_code}
 	</select>
 	

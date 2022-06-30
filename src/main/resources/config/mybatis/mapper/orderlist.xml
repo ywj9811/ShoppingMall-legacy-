@@ -14,14 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="olinsert" parameterType="orderlist">
-		insert into orderlisttbl values(
-			seq_orderlist.nextVal,
-			#{order_code},
-			#{payment_code},
-			#{p_info_dcode},
-			#{orderList_cnt},
-			#{user_code}
-		)	
+		insert into orderlisttbl values(seq_orderlist.nextVal,#{order_code},#{payment_code},#{p_info_dcode},#{orderList_cnt},#{user_code})	
 	</insert>
 	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
 </mapper>

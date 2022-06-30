@@ -7,9 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
 	
 	<select id="selectvo" resultType="order" parameterType="order">
-		select * from ordertbl where 
-		user_code = #{user_code} and
-		order_regdate = #{order_regdate}
+		select * from ordertbl where user_code = #{user_code} and order_regdate = #{order_regdate}
 	</select>
 	
 	<insert id="order_insert" parameterType="order">
