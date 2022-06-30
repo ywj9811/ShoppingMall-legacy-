@@ -29,5 +29,8 @@
 	<context:annotation-config />
 
 	<context:component-scan
-		base-package="dao, com.korea.project" />
+		base-package="dao, com.korea.project,scheduler" />
+		
+		<task:scheduler id="JobScheduler" pool-size="10"/>
+		<task:annotation-driven scheduler="JobScheduler"/>
 </beans:beans>

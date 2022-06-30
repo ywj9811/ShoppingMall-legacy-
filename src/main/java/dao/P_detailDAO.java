@@ -69,4 +69,20 @@ public class P_detailDAO {
 
 		return list;
 	}
+	
+	// 관리자 상품 등록
+		public void insert(int p_info_code,String size, String color) {
+			String[] arrSize=size.split(",");
+			String[] arrColor=color.split(",");
+			
+			for(int i = 0 ; i <arrSize.length ; i ++) {
+				for(int j=0 ; j < arrColor.length ; j++) {
+					HashMap<String,Object> map=new HashMap<String,Object>();
+					map.put("p_info_code",p_info_code);
+					map.put("p_detail_size",arrSize[i]);
+					map.put("p_detail_color",arrColor[j]);
+					sqlSession.insert("p_detail.insert",map);
+				}
+			}
+		}
 }

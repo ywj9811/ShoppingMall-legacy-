@@ -173,5 +173,10 @@ public class UserDAO {
 	}
 	
 	
-	// 
+	//관리자 스케줄러 
+		public void updateUser() {
+		
+			 sqlSession.update("user.qui_change");
+			 sqlSession.update("user.del_change");
+		}
 }

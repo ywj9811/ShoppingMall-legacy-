@@ -171,6 +171,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="e_check" resultType="user" parameterType="String">
 		select * from usertbl where user_email = #{user_email}
 	</select>
+	
+	<!--  관리자 스케줄러 -->
+	<update id="qui_change">
+		update usertbl set user_status=1 where MONTHS_BETWEEN(user_logdate,sysdate)> 6 and user_status=0
+	</update>
+	
+	<update id="del_change">
+		update usertbl set user_status=3 where MONTHS_BETWEEN(user_logdate,sysdate)> 1 and user_status=2
+	</update>
 </mapper>
 
 

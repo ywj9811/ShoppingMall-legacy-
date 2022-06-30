@@ -5,7 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="admin">
 <!-- mapper란 DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일이다. --> 
-	
 	<!-- insert, delete, update는 resultType이 정수형으로 정해져있기 때문에 resultType을 작성하지 않음 -->
+	
+	<select id="select" resultType="admin" parameterType="java.util.HashMap">
+	select * from admintbl where admin_id=#{admin_id} and admin_pw=#{admin_pw}
+	</select>
 </mapper>
 

@@ -44,4 +44,24 @@ public class P_infoDAO {
 		List<P_infoVO> list = sqlSession.selectList("p_info.today", vo);
 		return list;
 	}
+	
+	//관리자 상품 게시물 return 
+		public List<P_infoVO> selectList(){
+			List<P_infoVO>	list= sqlSession.selectList("p_info.p_info_select");
+			return list;				
+		}
+		
+		//관리자 상품 중복 체크
+		public P_infoVO selectOne(String p_info_img1) {
+			P_infoVO vo =sqlSession.selectOne("p_info.p_info_one",p_info_img1);
+			
+			return vo;
+		}
+		
+		//관리자 상품 등록
+		public int insert(P_infoVO vo) {
+			int res= sqlSession.insert("p_info.p_insert",vo);
+			
+			return res;
+		}
 }

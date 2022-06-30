@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sale_status_view">
+	<select id="list" resultType="sale_status_view">
+		select * from sale_status_view
+	</select>
+	
+	<select id="search_list" resultType="sale_status_view" parameterType="sale_status_view">
+		select * from sale_status_view where p_info_lType like '%'||#{p_info_lType}||'%' and
+		p_info_sType like '%'||#{p_info_sType}||'%' and p_info_mType like '%'||#{p_info_mType}||'%'
+	
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
