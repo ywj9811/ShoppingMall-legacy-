@@ -52,16 +52,13 @@
 	</div>
 	<div class="side">
 		<div class="button">
-			<input type="button" value="구매후기" class="btn btn-outline-dark"
-				onclick="location.href='userreply.do'">
+			<input type="button" value="구매후기" class="btn btn-outline-dark"	onclick="location.href='userreply.do'">
 		</div>
 		<div class="button">
-			<input type="button" value="회원정보 변경" class="btn btn-outline-dark"
-				onclick="location.href='infochange.do'">
+			<input type="button" value="회원정보 변경" class="btn btn-outline-dark"	onclick="location.href='infochange.do'">
 		</div>
 		<div class="button">
-			<input type="button" value="주문내역" class="btn btn-outline-dark"
-				onclick="location.href='orderlist.do'">
+			<input type="button" value="주문내역" class="btn btn-outline-dark"	onclick="location.href='orderlist.do'">
 		</div>
 	</div>
 
@@ -69,11 +66,10 @@
 		<div class="center">
 			<div class="nav_data">
 				<div>상품 이름 : ${list.p_info_name }</div>
-				<div>구매상품 색상 :${list.p_detail_color } / 사이즈
-					:${list.p_detail_size }</div>
+				<div>구매상품 색상 :${list.p_detail_color } / 사이즈 : ${list.p_detail_size }</div>
 				<div>
-					<textarea class="form-control" name="content" rows="3" style="resize:none;" readonly><c:out
-							value="${ list.reply_content }" /></textarea>
+					<textarea class="form-control" name="content" rows="3"	style="resize: none;" readonly></textarea>
+					<c:out value="${ list.reply_content }" />
 				</div>
 				<div>작성일 : ${list.reply_regdate }</div>
 				<br>
