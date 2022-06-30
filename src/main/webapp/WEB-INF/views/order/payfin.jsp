@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +47,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
-	
+
 	<div class="info">
 		<div>
 			<img src="${vo.user_profile }" width="80">
@@ -56,7 +56,7 @@
 		<div>회원 등급 : ${vo.user_class }</div>
 		<div>가입 일자 : ${vo.user_regdate }</div>
 	</div>
-	
+
 	<h2>주문이 완료되었습니다.</h2>
 	<c:forEach var="list" items="${list }">
 		${ list.p_info_name }

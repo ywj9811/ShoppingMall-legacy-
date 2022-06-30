@@ -43,7 +43,12 @@ table, td, tr {
 
 .info {
 	display: flex;
-	text-align: center;
+	flex-direction: row;
+	width: 1000px;
+	height: 100px;
+	justify-content: space-around;
+	align-items: center;
+	margin: 100px auto;
 }
 
 .img {
@@ -54,6 +59,15 @@ table, td, tr {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/incloude/logout_header.jsp"></jsp:include>
+
+	<div class="info">
+		<div>
+			<img src="${vo.user_profile }" width="80">
+		</div>
+		<div>닉네임 : ${vo.user_nick }</div>
+		<div>회원 등급 : ${vo.user_class }</div>
+		<div>가입 일자 : ${vo.user_regdate }</div>
+	</div>
 	<!-- 각 상품의 수량, 전체 수량 각각 필요 -->
 	<div class="center">
 		<div class="center_top">
@@ -77,8 +91,9 @@ table, td, tr {
 										name="cnt" value=${ need[listcount.index].cart_cnt}
 										style="text-align: center; width: 100px;"> <input
 										type="button" class="btn btn-outline-dark" value="+"
-										onclick="plus(this.form);"> 
-										<img src="resources/image/biggarbagebin_121980.png" onclick="delOne()">
+										onclick="plus(this.form);"> <img
+										src="resources/image/biggarbagebin_121980.png"
+										onclick="delOne()">
 								</div>
 							</div>
 						</div>
@@ -88,7 +103,8 @@ table, td, tr {
 			<c:if test="${ total eq 0 }">아직 아무것도 담지 않았습니다.</c:if>
 		</div>
 		<div id="totaldel" class="del">
-			전체 삭제 <img src="resources/image/biggarbagebin_121980.png" onclick="delAll()" style="cursor: pointer;">
+			전체 삭제 <img src="resources/image/biggarbagebin_121980.png"
+				onclick="delAll()" style="cursor: pointer;">
 		</div>
 		<div class="center_bottom">
 			<form id="totalpay">
