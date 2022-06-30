@@ -132,7 +132,7 @@ public class CartController {
 
 		// 할인도 따져봐야 함.
 		int user_class = uvo.getUser_class(); // user세션에서 가져와서 사용하면 된다.
-
+		System.out.println(user_class);
 		float sail = total * (user_class * 10 / 100f); // 아예 여기에 user세션에서 가져다가 사용하면 된다.
 		int sailtotal = (int) (total - sail);
 		// total은 총 가격

@@ -78,9 +78,8 @@ table, td, tr {
 										name="cnt" value=${ need[listcount.index].cart_cnt}
 										style="text-align: center; width: 100px;"> <input
 										type="button" class="btn btn-outline-dark" value="+"
-										onclick="plus(this.form);"> <img
-										src="resources/image/biggarbagebin_121980.png"
-										onclick="delOne()">
+										onclick="plus(this.form);"> 
+										<img src="resources/image/biggarbagebin_121980.png" onclick="delOne()">
 								</div>
 							</div>
 						</div>
@@ -109,8 +108,8 @@ table, td, tr {
 					</tr>
 
 					<tr>
-						<td><div id="total">${total}원</div></td>
-						<td><div id="sail">${sail}원</div></td>
+						<td><div id="total">${total}</div></td>
+						<td><div id="sail">${sail}</div></td>
 						<td><div id="sailtotal">${ sailtotal }</div></td>
 					</tr>
 					<tr>
