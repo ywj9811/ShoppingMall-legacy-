@@ -71,7 +71,7 @@
 				<c:if test="${ sessionScope.vo ne null }">
 					<div>
 						<input type="button" class="btn btn-outline-dark" value="장바구니"
-							id="addcart">
+							onclick="addcart(this.form);">
 					</div>
 					<div id="hide" style="display: none;">
 						<input type="button" class="btn btn-outline-dark" value="바로구매"
@@ -94,10 +94,11 @@
 	</div>
 	<div class="centent">
 		<div>
-			<img src="${vo.p_info_img2 }" style="margin-left:500px; margin-top:100px;">
+			<img src="${vo.p_info_img2 }"
+				style="margin-left: 500px; margin-top: 100px;">
 		</div>
 		<div>
-			<img src="${vo.p_info_img3 }" style="margin-left:500px;">
+			<img src="${vo.p_info_img3 }" style="margin-left: 500px;">
 		</div>
 	</div>
 	<div>
@@ -128,26 +129,37 @@
 			alert("로그인 후 이용해주세요");
 		}
 
-		$("#addcart").click(
-				function() {
-					var form_data = $('#p_info').serialize();
-					$.ajax({
-						type : "post",
-						url : "addcart.do",
-						data : form_data,
+		function addcart(f) {
+			var size = f.sizebox.value;
+			var color = f.colorbox.value;
+			
+			if(size == "사이즈"){
+				alert("사이즈를 선택해주세요");
+				return;
+			}
+			
+			if(color == "색상"){
+				alert("색상을 선택해주세요");
+				return;
+			}
+			
+			var form_data = $('#p_info').serialize();
+			$.ajax({
+				type : "post",
+				url : "addcart.do",
+				data : form_data,
 
-						success : function(data) {
-							alert("상품이 담겼습니다");
-							payon();
-						},
+				success : function(data) {
+					alert("상품이 담겼습니다");
+					payon();
+				},
 
-						error : function(request, status, error) {
-							console.log("code:" + request.status + "\n"
-									+ "message:" + request.responseText + "\n"
-									+ "error:" + error);
-						}
-					});
-				});
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			});
+		}
 
 		function buynow() {
 			location.href = "cart.do";
