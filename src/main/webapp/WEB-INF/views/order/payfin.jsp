@@ -42,6 +42,13 @@
 	margin: 50px auto;
 	width: 1000px;
 }
+
+.orderFn {
+	margin: auto;
+	width: 1000px;
+	text-align: center;
+}
+}
 </style>
 
 </head>
@@ -56,9 +63,9 @@
 		<div>회원 등급 : ${vo.user_class }</div>
 		<div>가입 일자 : ${vo.user_regdate }</div>
 	</div>
-
-	<h2>주문이 완료되었습니다.</h2>
-	<c:forEach var="list" items="${list }">
+	<div class="orderFn">
+		<h2>주문이 완료되었습니다.</h2>
+		<c:forEach var="list" items="${list }">
 		${ list.p_info_name }
 		(
 		${ list.p_detail_size }
@@ -67,6 +74,7 @@
 		)
 		${ list.p_info_price }
 		<br>
-	</c:forEach>
+		</c:forEach>
+	</div>
 </body>
 </html>
