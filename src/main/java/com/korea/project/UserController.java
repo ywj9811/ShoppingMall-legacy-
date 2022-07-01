@@ -389,6 +389,7 @@ public class UserController {
 				long time = System.currentTimeMillis();
 				filename = String.format("%d_%s", time, filename);
 				saveFile = new File(savePath, filename);
+				filename = "resources/upload/" + filename;
 			}
 
 			try {
@@ -400,7 +401,7 @@ public class UserController {
 				e.printStackTrace();
 			}
 		} // if
-
+		
 		uvo.setUser_profile(filename);
 
 		int list = user_dao.c_profile(uvo);
