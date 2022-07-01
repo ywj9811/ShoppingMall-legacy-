@@ -181,10 +181,8 @@ public class UserController {
 				// 물리적으로 파일을 업로드 하는 코드
 				user_photo.transferTo(saveFile);
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} // if
@@ -401,7 +399,7 @@ public class UserController {
 				e.printStackTrace();
 			}
 		} // if
-		
+
 		uvo.setUser_profile(filename);
 
 		int list = user_dao.c_profile(uvo);
